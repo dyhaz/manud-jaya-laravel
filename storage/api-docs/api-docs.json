@@ -1,0 +1,56 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My First API",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/desa/{id}": {
+            "get": {
+                "tags": [
+                    "Desa"
+                ],
+                "summary": "Retrieve a single Desa record by ID",
+                "operationId": "showDesa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Desa record retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Desa record not found"
+                    }
+                }
+            }
+        },
+        "/api/program-desa": {
+            "get": {
+                "tags": [
+                    "ProgramDesa"
+                ],
+                "summary": "Get list of program desa",
+                "description": "Returns list of program desa",
+                "operationId": "getProgramDesa",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        }
+    }
+}
