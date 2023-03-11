@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DesaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/desa/{id}', 'App\Http\Controllers\DesaController@show');
+Route::get('/desa', 'App\Http\Controllers\DesaController@index');
+Route::post('/desa', [DesaController::class, 'store']);
+Route::put('/desa/{id}', 'DesaController@update');
