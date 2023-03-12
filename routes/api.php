@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DesaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +20,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/desa/{id}', 'App\Http\Controllers\DesaController@show');
 Route::get('/desa', 'App\Http\Controllers\DesaController@index');
-Route::post('/desa', [DesaController::class, 'store']);
-Route::put('/desa/{id}', 'DesaController@update');
+Route::post('/desa', [\App\Http\Controllers\DesaController::class, 'store']);
+Route::put('/desa/{id}', 'App\Http\Controllers\DesaController@update');
+
+
+Route::get('/pelaksana-program/{id}', 'App\Http\Controllers\PelaksanaProgramController@show');
+Route::get('/pelaksana-program', 'App\Http\Controllers\PelaksanaProgramController@index');
+Route::post('/pelaksana-program', [\App\Http\Controllers\PelaksanaProgramController::class, 'store']);
+Route::put('/pelaksana-program/{id}', 'App\Http\Controllers\PelaksanaProgramController@update');
+
+
+Route::get('/program/{id}', 'App\Http\Controllers\ProgramDesaController@show');
+Route::get('/program', 'App\Http\Controllers\ProgramDesaController@index');
+Route::post('/program', [\App\Http\Controllers\ProgramDesaController::class, 'store']);
+Route::put('/program/{id}', 'App\Http\Controllers\ProgramDesaController@update');

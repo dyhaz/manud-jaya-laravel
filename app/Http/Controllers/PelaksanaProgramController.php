@@ -2,64 +2,192 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProgramDesa;
+use App\Models\PelaksanaProgram;
 use Illuminate\Http\Request;
 
 class PelaksanaProgramController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/pelaksana-program",
+     *     summary="Get all PelaksanaPrograms",
+     *     tags={"Pelaksana Program"},
+     *     @OA\Response(
+     *         response="200",
+     *         description="List of PelaksanaPrograms"
+     *     )
+     * )
      */
     public function index()
     {
-        //
+        $pelaksanaPrograms = PelaksanaProgram::all();
+        return response()->json(['data' => $pelaksanaPrograms], 200);
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/api/pelaksana-program",
+     *     summary="Create a new PelaksanaProgram",
+     *     tags={"Pelaksana Program"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *          @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"nama_pelaksana", "jabatan", "kontak", "program_id"},
+     *                 @OA\Property(
+     *                     property="nama_pelaksana",
+     *                     type="string",
+     *                     example="John Doe"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="jabatan",
+     *                     type="string",
+     *                     example="Sekda"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="kontak",
+     *                     type="string",
+     *                     example="123456"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="program_id",
+     *                     type="integer",
+     *                     example="1"
+     *                 ),
+     *             ),
+     *          ),
+     *     ),
+     *     @OA\Response(
+     *         response="201",
+     *         description="PelaksanaProgram created",
+     *     ),
+     *     @OA\Response(
+     *         response="422",
+     *         description="Validation error",
+     *     )
+     * )
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nama_pelaksana' => 'required|string',
+            'jabatan' => 'required|string',
+            'kontak' => 'required|string',
+            'program_id' => 'required|exists:program_desa,program_id',
+        ]);
+
+        $pelaksanaProgram = PelaksanaProgram::create($validatedData);
+
+        return response()->json(['data' => $pelaksanaProgram], 201);
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *   path="/api/pelaksana-program/{id}",
+     *   operationId="showPelaksanaProgram",
+     *   tags={"Pelaksana Program"},
+     *   summary="Retrieve a single Pelaksana Program record by ID",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true
+     *   ),
+     *   @OA\Response(
+     *     response="200",
+     *     description="Pelaksana Desa record retrieved successfully"
+     *   ),
+     *   @OA\Response(
+     *     response="404",
+     *     description="Pelaksana Desa record not found"
+     *   )
+     * )
      */
-    public function show(ProgramDesa $programDesa)
+    public function show($id)
     {
-        //
+        $pelaksanaProgram = PelaksanaProgram::findOrFail($id);
+        return response()->json(['data' => $pelaksanaProgram]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @OA\Put(
+     *     path="/pelaksana-program/{id}",
+     *     tags={"Pelaksana Program"},
+     *     summary="Update a Pelaksana Program record",
+     *     description="Update a specific Pelaksana Program record.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the Pelaksana Program to update.",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"nama_pelaksana", "jabatan", "kontak", "program_id"},
+     *                 @OA\Property(
+     *                     property="nama_pelaksana",
+     *                     type="string",
+     *                     example="Bang Al"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="jabatan",
+     *                     type="string",
+     *                     example="Sekda"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="kontak",
+     *                     type="string",
+     *                     example="1234567"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="program_id",
+     *                     type="integer",
+     *                     example="1"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Pelaksana Program not found"
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * )
      */
-    public function edit(ProgramDesa $programDesa)
+    public function update(Request $request, $id)
     {
-        //
+        $pelaksanaProgram = PelaksanaProgram::findOrFail($id);
+
+        $validatedData = $request->validate([
+            'nama_pelaksana' => 'required|string',
+            'jabatan' => 'required|string',
+            'kontak' => 'required|string',
+            'program_id' => 'required|exists:program_desa,program_id',
+        ]);
+
+        $pelaksanaProgram->update($validatedData);
+
+        return response()->json(['data' => $pelaksanaProgram]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ProgramDesa $programDesa)
+    public function destroy($id)
     {
-        //
-    }
+        $pelaksanaProgram = PelaksanaProgram::findOrFail($id);
+        $pelaksanaProgram->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ProgramDesa $programDesa)
-    {
-        //
+        return response()->json(null, 204);
     }
 }

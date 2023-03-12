@@ -182,6 +182,162 @@
                 ]
             }
         },
+        "/api/pelaksana-program": {
+            "get": {
+                "tags": [
+                    "Pelaksana Program"
+                ],
+                "summary": "Get all PelaksanaPrograms",
+                "operationId": "994bae725263241c5e29db5dd14df557",
+                "responses": {
+                    "200": {
+                        "description": "List of PelaksanaPrograms"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pelaksana Program"
+                ],
+                "summary": "Create a new PelaksanaProgram",
+                "operationId": "b6ef468fac90ce30da497ed9bce68855",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_pelaksana",
+                                    "jabatan",
+                                    "kontak",
+                                    "program_id"
+                                ],
+                                "properties": {
+                                    "nama_pelaksana": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "jabatan": {
+                                        "type": "string",
+                                        "example": "Sekda"
+                                    },
+                                    "kontak": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    },
+                                    "program_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "PelaksanaProgram created"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/pelaksana-program/{id}": {
+            "get": {
+                "tags": [
+                    "Pelaksana Program"
+                ],
+                "summary": "Retrieve a single Pelaksana Program record by ID",
+                "operationId": "showPelaksanaProgram",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pelaksana Desa record retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Pelaksana Desa record not found"
+                    }
+                }
+            }
+        },
+        "/pelaksana-program/{id}": {
+            "put": {
+                "tags": [
+                    "Pelaksana Program"
+                ],
+                "summary": "Update a Pelaksana Program record",
+                "description": "Update a specific Pelaksana Program record.",
+                "operationId": "36d3df2ad77b42d7b58180831e4046ed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the Pelaksana Program to update.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_pelaksana",
+                                    "jabatan",
+                                    "kontak",
+                                    "program_id"
+                                ],
+                                "properties": {
+                                    "nama_pelaksana": {
+                                        "type": "string",
+                                        "example": "Bang Al"
+                                    },
+                                    "jabatan": {
+                                        "type": "string",
+                                        "example": "Sekda"
+                                    },
+                                    "kontak": {
+                                        "type": "string",
+                                        "example": "1234567"
+                                    },
+                                    "program_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Pelaksana Program not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/program-desa": {
             "get": {
                 "tags": [

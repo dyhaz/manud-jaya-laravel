@@ -224,7 +224,7 @@ class DesaController extends Controller
 
         $desa->save();
 
-        return response()->json($desa);
+        return response()->json(['data' => $desa]);
     }
 
     /**
