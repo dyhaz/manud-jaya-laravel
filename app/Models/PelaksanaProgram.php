@@ -9,6 +9,18 @@ class PelaksanaProgram extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'nama_pelaksana',
+        'jabatan',
+        'kontak',
+        'program_id'
+    ];
+
     protected $table = 'pelaksana_program';
     protected $primaryKey = 'pelaksana_id';
 

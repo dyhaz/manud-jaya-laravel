@@ -267,16 +267,14 @@
                         "description": "Pelaksana Desa record not found"
                     }
                 }
-            }
-        },
-        "/pelaksana-program/{id}": {
+            },
             "put": {
                 "tags": [
                     "Pelaksana Program"
                 ],
                 "summary": "Update a Pelaksana Program record",
                 "description": "Update a specific Pelaksana Program record.",
-                "operationId": "36d3df2ad77b42d7b58180831e4046ed",
+                "operationId": "439090724123c9042120752f7f4167e9",
                 "parameters": [
                     {
                         "name": "id",
@@ -336,6 +334,28 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "delete": {
+                "tags": [
+                    "Pelaksana Program"
+                ],
+                "summary": "Delete by ID",
+                "operationId": "deletePelaksanaProgram",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Pelaksana Program record deleted successfully"
+                    },
+                    "404": {
+                        "description": "Pelaksana Program record not found"
+                    }
+                }
             }
         },
         "/api/program": {
@@ -359,6 +379,30 @@
                         "api_key_security_example": []
                     }
                 ]
+            }
+        },
+        "/api/program/{id}": {
+            "delete": {
+                "tags": [
+                    "ProgramDesa"
+                ],
+                "summary": "Delete by ID",
+                "operationId": "deleteProgram",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Program record deleted successfully"
+                    },
+                    "404": {
+                        "description": "Program record not found"
+                    }
+                }
             }
         }
     }

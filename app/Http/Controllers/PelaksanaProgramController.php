@@ -111,7 +111,7 @@ class PelaksanaProgramController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/pelaksana-program/{id}",
+     *     path="/api/pelaksana-program/{id}",
      *     tags={"Pelaksana Program"},
      *     summary="Update a Pelaksana Program record",
      *     description="Update a specific Pelaksana Program record.",
@@ -183,6 +183,28 @@ class PelaksanaProgramController extends Controller
         return response()->json(['data' => $pelaksanaProgram]);
     }
 
+
+    /**
+     * @OA\Delete(
+     *   path="/api/pelaksana-program/{id}",
+     *   operationId="deletePelaksanaProgram",
+     *   tags={"Pelaksana Program"},
+     *   summary="Delete by ID",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true
+     *   ),
+     *   @OA\Response(
+     *     response="204",
+     *     description="Pelaksana Program record deleted successfully"
+     *   ),
+     *   @OA\Response(
+     *     response="404",
+     *     description="Pelaksana Program record not found"
+     *   )
+     * )
+     */
     public function destroy($id)
     {
         $pelaksanaProgram = PelaksanaProgram::findOrFail($id);

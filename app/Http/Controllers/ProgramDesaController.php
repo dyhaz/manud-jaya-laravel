@@ -30,5 +30,32 @@ class ProgramDesaController extends Controller
         return response()->json(['data' => $programDesa], 200);
     }
 
-    // other CRUD methods
+    /**
+     * @OA\Delete(
+     *   path="/api/program/{id}",
+     *   operationId="deleteProgram",
+     *   tags={"ProgramDesa"},
+     *   summary="Delete by ID",
+     *   @OA\Parameter(
+     *     name="id",
+     *     in="path",
+     *     required=true
+     *   ),
+     *   @OA\Response(
+     *     response="204",
+     *     description="Program record deleted successfully"
+     *   ),
+     *   @OA\Response(
+     *     response="404",
+     *     description="Program record not found"
+     *   )
+     * )
+     */
+    public function destroy($id)
+    {
+        $programDesa = ProgramDesa::findOrFail($id);
+        $programDesa->delete();
+
+        return response()->json(null, 204);
+    }
 }

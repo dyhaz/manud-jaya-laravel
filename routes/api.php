@@ -28,9 +28,11 @@ Route::get('/pelaksana-program/{id}', 'App\Http\Controllers\PelaksanaProgramCont
 Route::get('/pelaksana-program', 'App\Http\Controllers\PelaksanaProgramController@index');
 Route::post('/pelaksana-program', [\App\Http\Controllers\PelaksanaProgramController::class, 'store']);
 Route::put('/pelaksana-program/{id}', 'App\Http\Controllers\PelaksanaProgramController@update');
+Route::delete('/pelaksana-program/{id}', 'App\Http\Controllers\PelaksanaProgramController@destroy');
 
 
 Route::get('/program/{id}', 'App\Http\Controllers\ProgramDesaController@show');
 Route::get('/program', 'App\Http\Controllers\ProgramDesaController@index');
 Route::post('/program', [\App\Http\Controllers\ProgramDesaController::class, 'store']);
 Route::put('/program/{id}', 'App\Http\Controllers\ProgramDesaController@update');
+Route::delete('/program/{id}', 'App\Http\Controllers\ProgramDesaController@destroy');
