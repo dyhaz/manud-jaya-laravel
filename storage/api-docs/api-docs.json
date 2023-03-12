@@ -338,7 +338,7 @@
                 ]
             }
         },
-        "/api/program-desa": {
+        "/api/program": {
             "get": {
                 "tags": [
                     "ProgramDesa"

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\ProgramDesa;
 
 class ProgramDesaController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/api/program-desa",
+     *      path="/api/program",
      *      operationId="getProgramDesa",
      *      tags={"ProgramDesa"},
      *      summary="Get list of program desa",
@@ -26,8 +25,9 @@ class ProgramDesaController extends Controller
      *
      * Returns list of program desa
      */
-    public function getProgramDesa() {
-        return ProgramDesa::all();
+    public function index() {
+        $programDesa = ProgramDesa::all();
+        return response()->json(['data' => $programDesa], 200);
     }
 
     // other CRUD methods
