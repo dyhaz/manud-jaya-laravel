@@ -12,10 +12,31 @@ use App\Models\User;
 class AuthController extends Controller
 {
     /**
-     * Login a user and generate an access token
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"Authentication"},
+     *      summary="Login a user and generate an access token",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/LoginRequest")
+     *      ),
+     *      @OA\Response(
+     *          response="200",
+     *          description="Login successful",
+     *          @OA\JsonContent(ref="#/components/schemas/LoginResponse")
+     *      ),
+     *      @OA\Response(
+     *          response="401",
+     *          description="Invalid credentials",
+     *          @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *      ),
+     *      @OA\Response(
+     *          response="422",
+     *          description="Validation error",
+     *          @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
+     *      )
+     * )
      */
     public function login(Request $request)
     {
@@ -40,10 +61,18 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout the authenticated user and revoke their access token
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *      path="/api/logout",
+     *      operationId="logout",
+     *      tags={"Authentication"},
+     *      summary="Logout the authenticated user and revoke their access token",
+     *      security={{"bearerAuth":{}}},
+     *      @OA\Response(
+     *          response="200",
+     *          description="Logout successful",
+     *          @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
+     *      )
+     * )
      */
     public function logout(Request $request)
     {
@@ -54,8 +83,43 @@ class AuthController extends Controller
     /**
      * Verify the email address of a user
      *
-     * @param string $token
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Get(
+     *      path="/api/verify-email/{token}",
+     *      summary="Verify user email",
+     *      description="Verify the email address of a user using the provided email verification token",
+     *      tags={"Authentication"},
+     *      @OA\Parameter(
+     *          name="token",
+     *          in="path",
+     *          description="The email verification token",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response="200",
+     *          description="Email verified successfully",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="message",
+     *                  type="string",
+     *                  example="Email verified"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response="400",
+     *          description="Invalid token",
+     *          @OA\JsonContent(
+     *              @OA\Property(
+     *                  property="error",
+     *                  type="string",
+     *                  example="Invalid token"
+     *              )
+     *          )
+     *      )
+     * )
      */
     public function verifyEmail($token)
     {
@@ -73,10 +137,51 @@ class AuthController extends Controller
     }
 
     /**
-     * Send an email verification link to a user
+     * Sends an email verification link to the user.
      *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @OA\Post(
+     *      path="/api/send-email-verification-link",
+     *      operationId="sendEmailVerificationLink",
+     *      tags={"Authentication"},
+     *      summary="Sends an email verification link to the user.",
+     *      description="Sends an email verification link to the user. The link contains a unique token that the user can use to verify their email address.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="The email address of the user.",
+     *          @OA\JsonContent(
+     *              required={"email"},
+     *              @OA\Property(property="email", type="string", example="user@example.com"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="The email verification link has been sent successfully.",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Email verification link sent"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="The request is invalid.",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="object", example={"email": {"The email field is required."}}),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="The user does not exist.",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="User not found"),
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=500,
+     *          description="An error occurred while sending the email verification link.",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="error", type="string", example="An error occurred while sending the email verification link."),
+     *          ),
+     *      ),
+     * )
      */
     public function sendEmailVerificationLink(Request $request)
     {
