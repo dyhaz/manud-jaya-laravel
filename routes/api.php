@@ -36,3 +36,9 @@ Route::get('/program', 'App\Http\Controllers\ProgramDesaController@index');
 Route::post('/program', [\App\Http\Controllers\ProgramDesaController::class, 'store']);
 Route::put('/program/{id}', 'App\Http\Controllers\ProgramDesaController@update');
 Route::delete('/program/{id}', 'App\Http\Controllers\ProgramDesaController@destroy');
+
+
+Route::get('/users/{id}', 'App\Http\Controllers\UserController@show');
+Route::get('/users', 'App\Http\Controllers\UserController@index');
+Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
+Route::put('/users/{id}', 'App\Http\Controllers\UserController@update');
