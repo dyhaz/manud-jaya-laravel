@@ -19,22 +19,34 @@ class AuthController extends Controller
      *      summary="Login a user and generate an access token",
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/LoginRequest")
+     *          @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"email", "password"},
+     *                 @OA\Property(
+     *                     property="email",
+     *                     type="string",
+     *                     example="dummy@example.com"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="password",
+     *                     type="string",
+     *                     example="secret"
+     *                 ),
+     *             ),
+     *          ),
      *      ),
      *      @OA\Response(
      *          response="200",
      *          description="Login successful",
-     *          @OA\JsonContent(ref="#/components/schemas/LoginResponse")
      *      ),
      *      @OA\Response(
      *          response="401",
      *          description="Invalid credentials",
-     *          @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
      *      ),
      *      @OA\Response(
      *          response="422",
      *          description="Validation error",
-     *          @OA\JsonContent(ref="#/components/schemas/ErrorResponse")
      *      )
      * )
      */
@@ -70,7 +82,6 @@ class AuthController extends Controller
      *      @OA\Response(
      *          response="200",
      *          description="Logout successful",
-     *          @OA\JsonContent(ref="#/components/schemas/SuccessResponse")
      *      )
      * )
      */
