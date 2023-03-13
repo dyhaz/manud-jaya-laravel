@@ -42,3 +42,8 @@ Route::get('/users/{id}', 'App\Http\Controllers\UserController@show');
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
 Route::put('/users/{id}', 'App\Http\Controllers\UserController@update');
+
+Route::post('/login', 'App\Http\Controllers\AuthController@login');
+Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
+Route::get('/verify-email/{token}', [\App\Http\Controllers\AuthController::class, 'verifyEmail']);
+Route::post('/send-email-verification-link', 'App\Http\Controllers\AuthController@sendEmailVerificationLink');
