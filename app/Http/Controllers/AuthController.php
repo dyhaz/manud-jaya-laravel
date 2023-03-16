@@ -97,6 +97,7 @@ class AuthController extends Controller
      * @OA\Get(
      *      path="/api/verify-email/{token}",
      *      summary="Verify user email",
+     *      operationId="verifyEmail",
      *      description="Verify the email address of a user using the provided email verification token",
      *      tags={"Authentication"},
      *      @OA\Parameter(

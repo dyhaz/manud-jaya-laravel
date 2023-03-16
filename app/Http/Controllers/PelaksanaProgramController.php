@@ -10,6 +10,7 @@ class PelaksanaProgramController extends Controller
     /**
      * @OA\Get(
      *     path="/api/pelaksana-program",
+     *     operationId="getAllPelaksanaProgram",
      *     summary="Get all PelaksanaPrograms",
      *     tags={"Pelaksana Program"},
      *     @OA\Response(
@@ -28,6 +29,7 @@ class PelaksanaProgramController extends Controller
      * @OA\Post(
      *     path="/api/pelaksana-program",
      *     summary="Create a new PelaksanaProgram",
+     *     operationId="createPelaksanaProgram",
      *     tags={"Pelaksana Program"},
      *     @OA\RequestBody(
      *         required=true,
@@ -113,6 +115,7 @@ class PelaksanaProgramController extends Controller
      * @OA\Put(
      *     path="/api/pelaksana-program/{id}",
      *     tags={"Pelaksana Program"},
+     *     operationId="updatePelaksanaProgram",
      *     summary="Update a Pelaksana Program record",
      *     description="Update a specific Pelaksana Program record.",
      *     @OA\Parameter(

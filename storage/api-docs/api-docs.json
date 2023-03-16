@@ -75,7 +75,7 @@
                 ],
                 "summary": "Verify user email",
                 "description": "Verify the email address of a user using the provided email verification token",
-                "operationId": "43c21085a5063650bfdc146fad8261ce",
+                "operationId": "verifyEmail",
                 "parameters": [
                     {
                         "name": "token",
@@ -406,7 +406,7 @@
                     "Pelaksana Program"
                 ],
                 "summary": "Get all PelaksanaPrograms",
-                "operationId": "994bae725263241c5e29db5dd14df557",
+                "operationId": "getAllPelaksanaProgram",
                 "responses": {
                     "200": {
                         "description": "List of PelaksanaPrograms"
@@ -418,7 +418,7 @@
                     "Pelaksana Program"
                 ],
                 "summary": "Create a new PelaksanaProgram",
-                "operationId": "b6ef468fac90ce30da497ed9bce68855",
+                "operationId": "createPelaksanaProgram",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -492,7 +492,7 @@
                 ],
                 "summary": "Update a Pelaksana Program record",
                 "description": "Update a specific Pelaksana Program record.",
-                "operationId": "439090724123c9042120752f7f4167e9",
+                "operationId": "updatePelaksanaProgram",
                 "parameters": [
                     {
                         "name": "id",
