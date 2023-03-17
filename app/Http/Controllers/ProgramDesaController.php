@@ -110,6 +110,16 @@ class ProgramDesaController extends Controller
      *             ),
      *          ),
      *      ),
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          in="header",
+     *          description="Header to indicate the requested content type",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *              default="application/json"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -197,6 +207,16 @@ class ProgramDesaController extends Controller
      *             ),
      *          ),
      *      ),
+     *      @OA\Parameter(
+     *          name="Accept",
+     *          in="header",
+     *          description="Header to indicate the requested content type",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *              default="application/json"
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -236,6 +256,16 @@ class ProgramDesaController extends Controller
      *     name="id",
      *     in="path",
      *     required=true
+     *   ),
+     *   @OA\Parameter(
+     *      name="Accept",
+     *      in="header",
+     *      description="Header to indicate the requested content type",
+     *      required=true,
+     *      @OA\Schema(
+     *          type="string",
+     *          default="application/json"
+     *      )
      *   ),
      *   @OA\Response(
      *     response="204",
