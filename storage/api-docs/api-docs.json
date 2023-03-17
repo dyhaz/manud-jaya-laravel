@@ -315,7 +315,12 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -387,7 +392,12 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "404": {
                         "description": "Desa not found"
@@ -455,7 +465,12 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "PelaksanaProgram created"
+                        "description": "PelaksanaProgram created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -541,7 +556,12 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Success"
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "404": {
                         "description": "Pelaksana Program not found"
@@ -568,7 +588,12 @@
                 ],
                 "responses": {
                     "204": {
-                        "description": "Pelaksana Program record deleted successfully"
+                        "description": "Pelaksana Program record deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "404": {
                         "description": "Pelaksana Program record not found"
@@ -661,7 +686,12 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -771,7 +801,12 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     },
                     "404": {
                         "description": "ProgramDesa not found"
