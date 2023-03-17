@@ -605,6 +605,18 @@
                 "summary": "Store new ProgramDesa",
                 "description": "Returns ProgramDesa data",
                 "operationId": "storeProgramDesa",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Header to indicate the requested content type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "application/json"
+                        }
+                    }
+                ],
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -703,6 +715,16 @@
                             "type": "integer",
                             "format": "int64"
                         }
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Header to indicate the requested content type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "application/json"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -767,6 +789,16 @@
                         "name": "id",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "description": "Header to indicate the requested content type",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "application/json"
+                        }
                     }
                 ],
                 "responses": {

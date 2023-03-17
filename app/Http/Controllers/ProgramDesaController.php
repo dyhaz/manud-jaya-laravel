@@ -138,8 +138,8 @@ class ProgramDesaController extends Controller
             'deskripsi_program' => 'required|string',
             'tanggal_mulai' => 'required|string',
             'tanggal_selesai' => 'required|string',
-            'foto' => 'string',
-            'anggaran' => 'string'
+            'foto' => 'string|nullable',
+            'anggaran' => 'string|nullable'
         ]);
 
         if (empty($validatedData['desa_id'])) {
