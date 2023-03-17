@@ -118,20 +118,22 @@ class ProgramDesaController extends Controller
      */
     public function store(Request $request)
     {
-        $program_desa = new ProgramDesa;
-        $program_desa->nama_program = $request->json('nama_program');
-        $program_desa->deskripsi_program = $request->json('deskripsi_program');
-        $program_desa->tanggal_mulai = $request->json('tanggal_mulai');
-        $program_desa->tanggal_selesai = $request->json('tanggal_selesai');
-        $program_desa->foto = $request->json('foto');
-        $program_desa->anggaran = $request->json('anggaran');
 
-        if (!empty($request->json('desa_id'))) {
-            $program_desa->desa_id = $request->json('desa_id');
-        } else {
-            $program_desa->desa_id = '1';
+        $validatedData = $request->validate([
+            'nama_program' => 'required|string|max:255',
+            'deskripsi_program' => 'required|string',
+            'tanggal_mulai' => 'required|string',
+            'tanggal_selesai' => 'required|string',
+            'foto' => 'string',
+            'anggaran' => 'string'
+        ]);
+
+        if (empty($validatedData['desa_id'])) {
+            $validatedData['desa_id'] = '1';
         }
-        $program_desa->save();
+
+        $program_desa = ProgramDesa::create($validatedData);
+
         return response()->json(['data' => $program_desa], 201);
     }
 
