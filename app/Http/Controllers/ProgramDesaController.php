@@ -119,15 +119,15 @@ class ProgramDesaController extends Controller
     public function store(Request $request)
     {
         $program_desa = new ProgramDesa;
-        $program_desa->nama_program = $request->input('nama_program');
-        $program_desa->deskripsi_program = $request->input('deskripsi_program');
-        $program_desa->tanggal_mulai = $request->input('tanggal_mulai');
-        $program_desa->tanggal_selesai = $request->input('tanggal_selesai');
-        $program_desa->foto = $request->input('foto');
-        $program_desa->anggaran = $request->input('anggaran');
+        $program_desa->nama_program = $request->json('nama_program');
+        $program_desa->deskripsi_program = $request->json('deskripsi_program');
+        $program_desa->tanggal_mulai = $request->json('tanggal_mulai');
+        $program_desa->tanggal_selesai = $request->json('tanggal_selesai');
+        $program_desa->foto = $request->json('foto');
+        $program_desa->anggaran = $request->json('anggaran');
 
-        if (!empty($request->input('desa_id'))) {
-            $program_desa->desa_id = $request->input('desa_id');
+        if (!empty($request->json('desa_id'))) {
+            $program_desa->desa_id = $request->json('desa_id');
         } else {
             $program_desa->desa_id = '1';
         }
