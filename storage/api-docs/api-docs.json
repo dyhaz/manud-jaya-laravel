@@ -674,6 +674,14 @@
                                     "tanggal_selesai": {
                                         "type": "string",
                                         "example": "2022-03-03"
+                                    },
+                                    "anggaran": {
+                                        "type": "string",
+                                        "example": "100000000"
+                                    },
+                                    "foto": {
+                                        "type": "string",
+                                        "example": ""
                                     }
                                 },
                                 "type": "object"
@@ -726,6 +734,14 @@
                                     "tanggal_selesai": {
                                         "type": "string",
                                         "example": "2022-03-03"
+                                    },
+                                    "anggaran": {
+                                        "type": "string",
+                                        "example": "100000000"
+                                    },
+                                    "foto": {
+                                        "type": "string",
+                                        "example": ""
                                     }
                                 },
                                 "type": "object"

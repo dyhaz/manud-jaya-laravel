@@ -95,6 +95,16 @@ class ProgramDesaController extends Controller
      *                     property="tanggal_selesai",
      *                     type="string",
      *                     example="2022-03-03"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="anggaran",
+     *                     type="string",
+     *                     example="100000000"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="foto",
+     *                     type="string",
+     *                     example=""
      *                 )
      *             )
      *          )
@@ -163,6 +173,16 @@ class ProgramDesaController extends Controller
      *                     property="tanggal_selesai",
      *                     type="string",
      *                     example="2022-03-03"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="anggaran",
+     *                     type="string",
+     *                     example="100000000"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="foto",
+     *                     type="string",
+     *                     example=""
      *                 )
      *             )
      *          )
