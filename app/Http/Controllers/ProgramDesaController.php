@@ -32,7 +32,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/program_desa/{id}",
+     *      path="/api/program/{id}",
      *      operationId="getProgramDesaById",
      *      tags={"ProgramDesa"},
      *      summary="Get ProgramDesa information",
@@ -136,7 +136,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/program_desa/{id}",
+     *      path="/api/program/{id}",
      *      operationId="updateProgramDesa",
      *      tags={"ProgramDesa"},
      *      summary="Update existing ProgramDesa",
