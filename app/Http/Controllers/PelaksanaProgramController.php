@@ -63,6 +63,7 @@ class PelaksanaProgramController extends Controller
      *     @OA\Response(
      *         response="201",
      *         description="PelaksanaProgram created",
+     *         @OA\JsonContent()
      *     ),
      *     @OA\Response(
      *         response="422",
@@ -159,7 +160,8 @@ class PelaksanaProgramController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Success"
+     *         description="Success",
+     *         @OA\JsonContent()
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -200,7 +202,8 @@ class PelaksanaProgramController extends Controller
      *   ),
      *   @OA\Response(
      *     response="204",
-     *     description="Pelaksana Program record deleted successfully"
+     *     description="Pelaksana Program record deleted successfully",
+     *     @OA\JsonContent()
      *   ),
      *   @OA\Response(
      *     response="404",

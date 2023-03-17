@@ -110,7 +110,8 @@ class DesaController extends Controller
      *      ),
      *      @OA\Response(
      *          response=201,
-     *          description="Successful operation"
+     *          description="Successful operation",
+     *          @OA\JsonContent()
      *      ),
      *      @OA\Response(
      *          response=401,
@@ -189,7 +190,8 @@ class DesaController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Success"
+     *         description="Success",
+     *         @OA\JsonContent()
      *     ),
      *     @OA\Response(
      *         response=404,

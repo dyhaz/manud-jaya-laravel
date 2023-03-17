@@ -123,6 +123,7 @@ class ProgramDesaController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *          @OA\JsonContent()
      *      ),
      *     @OA\Response(
      *         response="422",
@@ -220,6 +221,7 @@ class ProgramDesaController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
+     *          @OA\JsonContent()
      *      ),
      *      @OA\Response(
      *          response=404,
