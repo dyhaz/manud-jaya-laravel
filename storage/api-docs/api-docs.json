@@ -597,9 +597,64 @@
                         "api_key_security_example": []
                     }
                 ]
+            },
+            "post": {
+                "tags": [
+                    "ProgramDesa"
+                ],
+                "summary": "Store new ProgramDesa",
+                "description": "Returns ProgramDesa data",
+                "operationId": "storeProgramDesa",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nama_program",
+                                    "deskripsi_program",
+                                    "tanggal_mulai",
+                                    "tanggal_selesai"
+                                ],
+                                "properties": {
+                                    "nama_program": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "deskripsi_program": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "tanggal_mulai": {
+                                        "type": "string",
+                                        "example": "2022-03-03"
+                                    },
+                                    "tanggal_selesai": {
+                                        "type": "string",
+                                        "example": "2022-03-03"
+                                    },
+                                    "anggaran": {
+                                        "type": "string",
+                                        "example": "100000000"
+                                    },
+                                    "foto": {
+                                        "type": "string",
+                                        "example": ""
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
             }
         },
-        "/api/program_desa/{id}": {
+        "/api/program/{id}": {
             "get": {
                 "tags": [
                     "ProgramDesa"
@@ -697,66 +752,7 @@
                         "description": "ProgramDesa not found"
                     }
                 }
-            }
-        },
-        "/api/program_desa": {
-            "post": {
-                "tags": [
-                    "ProgramDesa"
-                ],
-                "summary": "Store new ProgramDesa",
-                "description": "Returns ProgramDesa data",
-                "operationId": "storeProgramDesa",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "nama_program",
-                                    "deskripsi_program",
-                                    "tanggal_mulai",
-                                    "tanggal_selesai"
-                                ],
-                                "properties": {
-                                    "nama_program": {
-                                        "type": "string",
-                                        "example": "John Doe"
-                                    },
-                                    "deskripsi_program": {
-                                        "type": "string",
-                                        "example": "John Doe"
-                                    },
-                                    "tanggal_mulai": {
-                                        "type": "string",
-                                        "example": "2022-03-03"
-                                    },
-                                    "tanggal_selesai": {
-                                        "type": "string",
-                                        "example": "2022-03-03"
-                                    },
-                                    "anggaran": {
-                                        "type": "string",
-                                        "example": "100000000"
-                                    },
-                                    "foto": {
-                                        "type": "string",
-                                        "example": ""
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    }
-                }
-            }
-        },
-        "/api/program/{id}": {
+            },
             "delete": {
                 "tags": [
                     "ProgramDesa"

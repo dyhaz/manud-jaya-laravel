@@ -65,7 +65,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/program_desa",
+     *      path="/api/program",
      *      operationId="storeProgramDesa",
      *      tags={"ProgramDesa"},
      *      summary="Store new ProgramDesa",
