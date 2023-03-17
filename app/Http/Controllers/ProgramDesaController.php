@@ -9,7 +9,7 @@ class ProgramDesaController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/api/program",
+     *      path="/api/program-desa",
      *      operationId="getProgramDesa",
      *      tags={"ProgramDesa"},
      *      summary="Get list of program desa",
@@ -33,7 +33,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/program/{id}",
+     *      path="/api/program-desa/{id}",
      *      operationId="getProgramDesaById",
      *      tags={"ProgramDesa"},
      *      summary="Get ProgramDesa information",
@@ -66,7 +66,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/program",
+     *      path="/api/program-desa",
      *      operationId="storeProgramDesa",
      *      tags={"ProgramDesa"},
      *      summary="Store new ProgramDesa",
@@ -106,14 +106,18 @@ class ProgramDesaController extends Controller
      *                     property="foto",
      *                     type="string",
      *                     example=""
-     *                 )
-     *             )
-     *          )
+     *                 ),
+     *             ),
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *      )
+     *      ),
+     *     @OA\Response(
+     *         response="422",
+     *         description="Validation error",
+     *     )
      * )
      */
     public function store(Request $request)
@@ -139,7 +143,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/program/{id}",
+     *      path="/api/program-desa/{id}",
      *      operationId="updateProgramDesa",
      *      tags={"ProgramDesa"},
      *      summary="Update existing ProgramDesa",
@@ -152,7 +156,7 @@ class ProgramDesaController extends Controller
      *          @OA\Schema(
      *              type="integer",
      *              format="int64"
-     *          )
+     *          ),
      *      ),
      *      @OA\RequestBody(
      *          required=true,
@@ -189,9 +193,9 @@ class ProgramDesaController extends Controller
      *                     property="foto",
      *                     type="string",
      *                     example=""
-     *                 )
-     *             )
-     *          )
+     *                 ),
+     *             ),
+     *          ),
      *      ),
      *      @OA\Response(
      *          response=200,
@@ -224,7 +228,7 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Delete(
-     *   path="/api/program/{id}",
+     *   path="/api/program-desa/{id}",
      *   operationId="deleteProgram",
      *   tags={"ProgramDesa"},
      *   summary="Delete by ID",

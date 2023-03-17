@@ -29,11 +29,11 @@ Route::post('/pelaksana-program', [\App\Http\Controllers\PelaksanaProgramControl
 Route::put('/pelaksana-program/{id}', [\App\Http\Controllers\PelaksanaProgramController::class, 'update']);
 Route::delete('/pelaksana-program/{id}', [\App\Http\Controllers\PelaksanaProgramController::class, 'destroy']);
 
-Route::get('/program/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'show']);
-Route::get('/program', [\App\Http\Controllers\ProgramDesaController::class, 'index']);
-Route::post('/program', [\App\Http\Controllers\ProgramDesaController::class, 'store']);
-Route::put('/program/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'update']);
-Route::delete('/program/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'destroy']);
+Route::get('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'show']);
+Route::get('/program-desa', [\App\Http\Controllers\ProgramDesaController::class, 'index']);
+Route::post('/program-desa', [\App\Http\Controllers\ProgramDesaController::class, 'store']);
+Route::put('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'update']);
+Route::delete('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'destroy']);
 
 Route::get('/users/{id}', [\App\Http\Controllers\UserController::class, 'show']);
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);

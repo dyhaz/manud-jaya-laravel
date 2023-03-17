@@ -29,6 +29,7 @@ class UserController extends Controller
      * @OA\Post(
      *     path="/api/users",
      *     summary="Create a new user",
+     *     summary="createUser",
      *     tags={"User Management"},
      *     @OA\RequestBody(
      *         required=true,

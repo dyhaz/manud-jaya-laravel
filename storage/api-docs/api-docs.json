@@ -576,7 +576,7 @@
                 }
             }
         },
-        "/api/program": {
+        "/api/program-desa": {
             "get": {
                 "tags": [
                     "ProgramDesa"
@@ -650,11 +650,14 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation"
+                    },
+                    "422": {
+                        "description": "Validation error"
                     }
                 }
             }
         },
-        "/api/program/{id}": {
+        "/api/program-desa/{id}": {
             "get": {
                 "tags": [
                     "ProgramDesa"
@@ -793,7 +796,7 @@
                 "tags": [
                     "User Management"
                 ],
-                "summary": "Create a new user",
+                "summary": "createUser",
                 "operationId": "592819a0265360b2014512d6dbfaf0e7",
                 "requestBody": {
                     "required": true,
