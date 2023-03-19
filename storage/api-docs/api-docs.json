@@ -852,7 +852,7 @@
                     "User Management"
                 ],
                 "summary": "Get all users",
-                "operationId": "c457726701591d1183b53aa71fc13441",
+                "operationId": "getUsers",
                 "responses": {
                     "200": {
                         "description": "List of users"
@@ -863,8 +863,8 @@
                 "tags": [
                     "User Management"
                 ],
-                "summary": "createUser",
-                "operationId": "592819a0265360b2014512d6dbfaf0e7",
+                "summary": "Create a new user",
+                "operationId": "createUser",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -933,7 +933,7 @@
                 ],
                 "summary": "Update a user record",
                 "description": "Update a specific user record.",
-                "operationId": "b9091397c8b25f12c6adb74be6ce3a5a",
+                "operationId": "updateUser",
                 "parameters": [
                     {
                         "name": "id",

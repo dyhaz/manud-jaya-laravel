@@ -12,6 +12,7 @@ class UserController extends Controller
      * @OA\Get(
      *     path="/api/users",
      *     summary="Get all users",
+     *     operationId="getUsers",
      *     tags={"User Management"},
      *     @OA\Response(
      *         response="200",
@@ -29,7 +30,7 @@ class UserController extends Controller
      * @OA\Post(
      *     path="/api/users",
      *     summary="Create a new user",
-     *     summary="createUser",
+     *     operationId="createUser",
      *     tags={"User Management"},
      *     @OA\RequestBody(
      *         required=true,
@@ -111,6 +112,7 @@ class UserController extends Controller
      * @OA\Put(
      *     path="/api/users/{id}",
      *     tags={"User Management"},
+     *     operationId="updateUser",
      *     summary="Update a user record",
      *     description="Update a specific user record.",
      *     @OA\Parameter(
