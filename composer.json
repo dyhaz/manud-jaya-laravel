@@ -7,13 +7,14 @@
     "require": {
         "php": "^8.0.25",
         "darkaonline/l5-swagger": "^8.5",
+        "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "^7.2",
+        "illuminate/console": "v9.27.0",
+        "illuminate/support": "v9.27.0",
         "laravel/framework": "v9.27.0",
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.14",
-        "laravel/tinker": "^2.8",
-        "illuminate/console": "v9.27.0",
-        "illuminate/support": "v9.27.0"
+        "laravel/tinker": "^2.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
