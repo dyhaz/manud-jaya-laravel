@@ -32,7 +32,7 @@ class PasswordReset extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.reset_password')
+        return $this->view('emails.reset-password')
             ->with([
                 'resetLink' => $this->resetLink,
             ]);
