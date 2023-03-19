@@ -887,6 +887,10 @@
                                     "password": {
                                         "type": "string",
                                         "example": "secret"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "12345678"
                                     }
                                 },
                                 "type": "object"
@@ -963,6 +967,10 @@
                                     "password": {
                                         "type": "string",
                                         "example": "secret"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "12345678"
                                     }
                                 },
                                 "type": "object"

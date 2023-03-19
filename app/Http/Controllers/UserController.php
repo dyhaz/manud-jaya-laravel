@@ -53,6 +53,11 @@ class UserController extends Controller
      *                     type="string",
      *                     example="secret"
      *                 ),
+     *                 @OA\Property(
+     *                     property="phone",
+     *                     type="string",
+     *                     example="12345678"
+     *                 ),
      *             ),
      *          ),
      *     ),
@@ -72,6 +77,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'phone' => 'string|,max:20|nullable'
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
@@ -141,6 +147,11 @@ class UserController extends Controller
      *                     type="string",
      *                     example="secret"
      *                 ),
+     *                 @OA\Property(
+     *                     property="phone",
+     *                     type="string",
+     *                     example="12345678"
+     *                 ),
      *             ),
      *          ),
      *     ),
@@ -162,6 +173,7 @@ class UserController extends Controller
             'name' => 'sometimes|required|string|max:255',
             'email' => 'sometimes|required|string|email|unique:users,email,' . $user->id . '|max:255',
             'password' => 'sometimes|required|string|min:8|max:255',
+            'phone' => 'string|,max:20|nullable'
         ]);
 
         if (isset($validatedData['password'])) {
