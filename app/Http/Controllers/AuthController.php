@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -219,7 +220,7 @@ class AuthController extends Controller
         $user->email_verification_token = $token;
         $user->save();
 
-//        Mail::to($user->email)->send(new VerifyEmail($user));
+        Mail::to($user->email)->send(new PasswordReset($user, url('/reset-password/', $token)));
 
         return response()->json(['message' => 'Email verification link sent'], 200);
     }
