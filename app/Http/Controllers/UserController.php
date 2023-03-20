@@ -197,4 +197,20 @@ class UserController extends Controller
         $user->delete();
         return response()->json(['message' => 'User deleted successfully']);
     }
+
+    /**
+     * Show reset password page
+     *
+     * @param $token
+     * @return
+     */
+    public function resetPassword($token)
+    {
+        $user = User::where('email_verification_token', $token)->first();
+        $passwordLength = 10;
+        $newPassword = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($passwordLength/strlen($x)) )),1, $passwordLength);
+        $user->password = Hash::make($newPassword);
+        $user->update();
+        return view('reset-password', ['user' => $user, 'newPassword' => $newPassword]);
+    }
 }
