@@ -206,11 +206,15 @@ class UserController extends Controller
      */
     public function resetPassword($token)
     {
-        $user = User::where('email_verification_token', $token)->first();
+        $user = User::where('email_verification_token', base64_decode($token))->first();
         $passwordLength = 10;
-        $newPassword = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($passwordLength/strlen($x)) )),1, $passwordLength);
-        $user->password = Hash::make($newPassword);
-        $user->update();
+        $newPassword = '';
+        if ($user) {
+            $newPassword = substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($passwordLength/strlen($x)) )),1, $passwordLength);
+            $user->email_verification_token = null;
+            $user->password = Hash::make($newPassword);
+            $user->update();
+        }
         return view('reset-password', ['user' => $user, 'newPassword' => $newPassword]);
     }
 }

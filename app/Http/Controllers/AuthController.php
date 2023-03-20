@@ -220,7 +220,7 @@ class AuthController extends Controller
         $user->email_verification_token = $token;
         $user->save();
 
-        Mail::to($user->email)->send(new PasswordReset($user, url('/reset-password/', $token)));
+        Mail::to($user->email)->send(new PasswordReset($user, url('/reset-password', base64_encode($token))));
 
         return response()->json(['message' => 'Email verification link sent'], 200);
     }
