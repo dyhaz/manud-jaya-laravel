@@ -21,7 +21,8 @@ class ProgramDesa extends Model
         'tanggal_selesai',
         'desa_id',
         'anggaran',
-        'foto'
+        'foto',
+        'status'
     ];
 
     protected $table = 'program_desa';
