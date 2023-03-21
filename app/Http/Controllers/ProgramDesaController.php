@@ -85,7 +85,8 @@ class ProgramDesaController extends Controller
             $programDesaQuery->where($column, 'like', "%{$value}%");
         }
 
-        $programDesaQuery->where('status', $request->query('status', true));
+        $status = $request->query('status', true) ? '1' : '0';
+        $programDesaQuery->where('status', $status);
 
         // Paginate the results
         $perPage = $request->input('perPage', 100);
