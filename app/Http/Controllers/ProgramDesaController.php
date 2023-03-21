@@ -33,6 +33,69 @@ class ProgramDesaController extends Controller
 
     /**
      * @OA\Get(
+     *     path="/api/program-desa-landing",
+     *     summary="Get all ProgramDesa with optional filters",
+     *      operationId="getProgramDesaLanding",
+     *      tags={"ProgramDesa"},
+     *     @OA\Parameter(
+     *         name="nama_program",
+     *         in="query",
+     *         description="Filter by nama_program",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Parameter(
+     *         name="tanggal_mulai",
+     *         in="query",
+     *         description="Filter by tanggal_mulai",
+     *         @OA\Schema(type="string", format="date")
+     *     ),
+     *     @OA\Parameter(
+     *         name="tanggal_selesai",
+     *         in="query",
+     *         description="Filter by tanggal_selesai",
+     *         @OA\Schema(type="string", format="date")
+     *     ),
+     *     @OA\Parameter(
+     *         name="desa_id",
+     *         in="query",
+     *         description="Filter by desa_id",
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Parameter(
+     *         name="status",
+     *         in="query",
+     *         description="Filter by status",
+     *         @OA\Schema(type="boolean")
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="List of ProgramDesa",
+     *         @OA\JsonContent()
+     *     )
+     * )
+     */
+    public function getProgramDesaLanding(Request $request) {
+        $programDesaQuery = ProgramDesa::query();
+
+        // Apply filters based on request parameters
+        foreach ($request->query() as $column => $value) {
+            if ($column === 'page' || $column === 'status') {
+                continue;
+            }
+            $programDesaQuery->where($column, 'like', "%{$value}%");
+        }
+
+        $programDesaQuery->where('status', $request->query('status', true));
+
+        // Paginate the results
+        $perPage = $request->input('perPage', 100);
+        $programDesa = $programDesaQuery->paginate($perPage);
+
+        return response()->json(['data' => $programDesa]);
+    }
+
+    /**
+     * @OA\Get(
      *      path="/api/program-desa/{id}",
      *      operationId="getProgramDesaById",
      *      tags={"ProgramDesa"},

@@ -31,6 +31,7 @@ Route::delete('/pelaksana-program/{id}', [\App\Http\Controllers\PelaksanaProgram
 
 Route::get('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'show']);
 Route::get('/program-desa', [\App\Http\Controllers\ProgramDesaController::class, 'index']);
+Route::get('/program-desa-landing', [\App\Http\Controllers\ProgramDesaController::class, 'getProgramDesaLanding']);
 Route::post('/program-desa', [\App\Http\Controllers\ProgramDesaController::class, 'store']);
 Route::put('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'update']);
 Route::delete('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController::class, 'destroy']);

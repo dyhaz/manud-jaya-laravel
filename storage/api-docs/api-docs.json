@@ -677,6 +677,10 @@
                                     "foto": {
                                         "type": "string",
                                         "example": ""
+                                    },
+                                    "status": {
+                                        "type": "boolean",
+                                        "example": ""
                                     }
                                 },
                                 "type": "object"
@@ -695,6 +699,69 @@
                     },
                     "422": {
                         "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/program-desa-landing": {
+            "get": {
+                "tags": [
+                    "ProgramDesa"
+                ],
+                "summary": "Get all ProgramDesa with optional filters",
+                "operationId": "getProgramDesaLanding",
+                "parameters": [
+                    {
+                        "name": "nama_program",
+                        "in": "query",
+                        "description": "Filter by nama_program",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "tanggal_mulai",
+                        "in": "query",
+                        "description": "Filter by tanggal_mulai",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "tanggal_selesai",
+                        "in": "query",
+                        "description": "Filter by tanggal_selesai",
+                        "schema": {
+                            "type": "string",
+                            "format": "date"
+                        }
+                    },
+                    {
+                        "name": "desa_id",
+                        "in": "query",
+                        "description": "Filter by desa_id",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filter by status",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of ProgramDesa",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }
@@ -791,6 +858,10 @@
                                     },
                                     "foto": {
                                         "type": "string",
+                                        "example": ""
+                                    },
+                                    "status": {
+                                        "type": "boolean",
                                         "example": ""
                                     }
                                 },
@@ -984,6 +1055,70 @@
                     },
                     "404": {
                         "description": "User record not found"
+                    }
+                }
+            }
+        },
+        "/api/user/password": {
+            "post": {
+                "tags": [
+                    "User Management"
+                ],
+                "summary": "Change user password",
+                "description": "Changes the password of the authenticated user",
+                "operationId": "changePassword",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "current_password",
+                                    "new_password",
+                                    "new_password_confirmation"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "The user's ID",
+                                        "type": "integer"
+                                    },
+                                    "current_password": {
+                                        "description": "The user's current password",
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "new_password": {
+                                        "description": "The user's new password",
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "new_password_confirmation": {
+                                        "description": "Confirmation of the user's new password",
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password changed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - invalid current password",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
                     }
                 }
             }
