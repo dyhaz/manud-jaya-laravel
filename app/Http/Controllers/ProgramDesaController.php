@@ -92,7 +92,7 @@ class ProgramDesaController extends Controller
         $perPage = $request->input('perPage', 100);
         $programDesa = $programDesaQuery->paginate($perPage);
 
-        return response()->json(['data' => $programDesa]);
+        return response()->json($programDesa);
     }
 
     /**
