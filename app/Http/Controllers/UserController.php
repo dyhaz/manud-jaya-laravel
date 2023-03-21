@@ -217,4 +217,53 @@ class UserController extends Controller
         }
         return view('reset-password', ['user' => $user, 'newPassword' => $newPassword]);
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/user/password",
+     *     tags={"User Management"},
+     *     summary="Change user password",
+     *     operationId="changePassword",
+     *     description="Changes the password of the authenticated user",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"current_password", "new_password", "new_password_confirmation"},
+     *             @OA\Property(property="id", type="integer", description="The user's ID"),
+     *             @OA\Property(property="current_password", type="string", format="password", description="The user's current password"),
+     *             @OA\Property(property="new_password", type="string", format="password", description="The user's new password"),
+     *             @OA\Property(property="new_password_confirmation", type="string", format="password", description="Confirmation of the user's new password"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Password changed successfully",
+     *         @OA\JsonContent()
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized - invalid current password",
+     *         @OA\JsonContent()
+     *     ),
+     * )
+     */
+    public function changePassword(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|integer',
+            'current_password' => 'required',
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::findOrFail($validatedData['id']);
+
+        if (!Hash::check($validatedData['current_password'], $user->password)) {
+            return response()->json(['error' => 'Invalid current password'], 401);
+        }
+
+        $user->password = Hash::make($validatedData['new_password']);
+        $user->save();
+
+        return response()->json(['success' => 'Password changed successfully'], 200);
+    }
 }
