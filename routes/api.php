@@ -46,3 +46,5 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 Route::get('/verify-email/{token}', [\App\Http\Controllers\AuthController::class, 'verifyEmail']);
 Route::post('/send-email-verification-link', [\App\Http\Controllers\AuthController::class, 'sendEmailVerificationLink']);
+
+Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
