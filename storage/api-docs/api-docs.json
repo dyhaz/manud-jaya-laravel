@@ -223,6 +223,34 @@
                 }
             }
         },
+        "/api/dashboard": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Show the dashboard with summary data.",
+                "operationId": "dashboard",
+                "responses": {
+                    "200": {
+                        "description": "Dashboard record retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/api/dashboard/anggaran": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Get the total anggaran for each month in the current year.",
+                "operationId": "anggaran",
+                "responses": {
+                    "200": {
+                        "description": "Dashboard record retrieved successfully"
+                    }
+                }
+            }
+        },
         "/api/desa/{id}": {
             "get": {
                 "tags": [

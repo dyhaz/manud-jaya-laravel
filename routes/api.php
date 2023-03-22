@@ -48,3 +48,4 @@ Route::get('/verify-email/{token}', [\App\Http\Controllers\AuthController::class
 Route::post('/send-email-verification-link', [\App\Http\Controllers\AuthController::class, 'sendEmailVerificationLink']);
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+Route::get('/dashboard/anggaran', [\App\Http\Controllers\DashboardController::class, 'monthlyAnggaran']);
