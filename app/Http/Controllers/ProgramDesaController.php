@@ -217,6 +217,8 @@ class ProgramDesaController extends Controller
             $validatedData['desa_id'] = '1';
         }
 
+        $validatedData['status'] = $validatedData['status'] ? 1 : 0;
+
         $program_desa = ProgramDesa::create($validatedData);
 
         return response()->json(['data' => $program_desa], 201);
@@ -320,6 +322,9 @@ class ProgramDesaController extends Controller
         } else {
             $program_desa->desa_id = '1';
         }
+
+        $program_desa->status = $program_desa->status ? 1 : 0;
+
         $program_desa->save();
         return response()->json(['data' => $program_desa]);
     }
