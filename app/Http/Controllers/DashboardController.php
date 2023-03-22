@@ -57,8 +57,8 @@ class DashboardController extends Controller
     public function monthlyAnggaran()
     {
         $now = Carbon::now();
-        $startOfYear = $now->startOfYear();
-        $endOfYear = $now->endOfYear();
+        $startOfYear = $now->startOfYear()->toDateString();
+        $endOfYear = $now->endOfYear()->toDateString();
 
         $monthlyAnggaran = ProgramDesa::whereBetween('tanggal_mulai', [$startOfYear, $endOfYear])
             ->selectRaw('MONTH(tanggal_mulai) as month, SUM(anggaran) as total_anggaran')
