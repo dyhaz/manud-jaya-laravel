@@ -59,7 +59,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors(), 'message' => 'Wrong username or password. Please try again.'], 401);
+            return response()->json(['error' => $validator->errors(), 'message' => 'Validation error.'], 401);
         }
 
         $credentials = $request->only('email', 'password');
@@ -69,7 +69,7 @@ class AuthController extends Controller
             $token = $user->createToken('MyApp')->accessToken;
             return response()->json(['user' => $user, 'access_token' => $token, 'message' => 'Welcome, ' . $request->get('email')], 200);
         } else {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'Unauthorized', 'message' => 'Wrong username or password. Please try again.'], 401);
         }
     }
 
