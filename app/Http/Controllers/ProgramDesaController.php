@@ -209,7 +209,7 @@ class ProgramDesaController extends Controller
             'tanggal_mulai' => 'required|string',
             'tanggal_selesai' => 'required|string',
             'foto' => 'string|nullable',
-            'anggaran' => 'string|nullable',
+            'anggaran' => 'nullable',
             'status' => 'boolean|nullable'
         ]);
 
