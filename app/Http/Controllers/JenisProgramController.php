@@ -28,7 +28,7 @@ class JenisProgramController extends Controller
      * @OA\Post(
      *     path="/api/jenis-program",
      *     summary="Create a new jenis program",
-     *     operationId="showJenisProgram",
+     *     operationId="addJenisProgram",
      *     tags={"Jenis Program"},
      *     description="Creates a new jenis program record.",
      *     @OA\RequestBody(
