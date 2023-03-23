@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProgramDesa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -68,5 +69,41 @@ class DashboardController extends Controller
 
 
         return response()->json(['data' => $monthlyAnggaran]);
+    }
+
+    /**
+     * @OA\Get(
+     *   path="/api/dashboard/anggaran/{year}",
+     *   operationId="anggaranByMonth",
+     *   tags={"Dashboard"},
+     *   summary="Show the finance report for the current year.",
+     *   @OA\Response(
+     *     response="200",
+     *     description="Dashboard record retrieved successfully"
+     *   )
+     * )
+     */
+    public function anggaranByMonth($year)
+    {
+        // Get the current year
+        $currentYear = $year ?: date('Y');
+
+        // Construct an array with the total anggaran for each month
+        $anggaranByMonth = ProgramDesa::select(DB::raw('SUM(anggaran) as total_anggaran'), DB::raw('MONTH(tanggal_mulai) as month'))
+            ->whereYear('tanggal_mulai', $currentYear)
+            ->groupBy(DB::raw('MONTH(tanggal_mulai)'))
+            ->pluck('total_anggaran', 'month')
+            ->toArray();
+
+        // Create an array with the total anggaran for each month, with zero as default value
+        $anggaranArray = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $anggaranArray[$i] = $anggaranByMonth[$i] ?? 0;
+        }
+
+        return response()->json([
+            'currentYear' => $currentYear,
+            'data' => $anggaranArray,
+        ]);
     }
 }

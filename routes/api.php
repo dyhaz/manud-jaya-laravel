@@ -49,3 +49,4 @@ Route::post('/send-email-verification-link', [\App\Http\Controllers\AuthControll
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/dashboard/anggaran', [\App\Http\Controllers\DashboardController::class, 'monthlyAnggaran']);
+Route::get('/dashboard/anggaran/{year}', [\App\Http\Controllers\DashboardController::class, 'anggaranByMonth']);
