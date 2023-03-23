@@ -258,6 +258,17 @@
                 ],
                 "summary": "Show the finance report for the current year.",
                 "operationId": "anggaranByMonth",
+                "parameters": [
+                    {
+                        "name": "year",
+                        "in": "path",
+                        "description": "Current year.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Dashboard record retrieved successfully"
@@ -450,6 +461,58 @@
                         "bearerAuth": []
                     }
                 ]
+            }
+        },
+        "/api/jenis-program": {
+            "get": {
+                "tags": [
+                    "Jenis Program"
+                ],
+                "summary": "Get all jenis program",
+                "description": "Returns a list of all the jenis program.",
+                "operationId": "showJenisProgram",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Jenis Program"
+                ],
+                "summary": "Create a new jenis program",
+                "description": "Creates a new jenis program record.",
+                "operationId": "addJenisProgram",
+                "requestBody": {
+                    "description": "Jenis program details",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nama": {
+                                        "type": "string",
+                                        "example": "Program A"
+                                    },
+                                    "deskripsi": {
+                                        "type": "string",
+                                        "example": "Deskripsi Program A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Jenis program created successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
             }
         },
         "/api/pelaksana-program": {

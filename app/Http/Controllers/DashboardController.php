@@ -77,6 +77,15 @@ class DashboardController extends Controller
      *   operationId="anggaranByMonth",
      *   tags={"Dashboard"},
      *   summary="Show the finance report for the current year.",
+     *     @OA\Parameter(
+     *         name="year",
+     *         in="path",
+     *         description="Current year.",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
      *   @OA\Response(
      *     response="200",
      *     description="Dashboard record retrieved successfully"
