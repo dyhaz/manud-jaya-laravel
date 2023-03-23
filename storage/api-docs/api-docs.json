@@ -251,6 +251,20 @@
                 }
             }
         },
+        "/api/dashboard/anggaran/{year}": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Show the finance report for the current year.",
+                "operationId": "anggaranByMonth",
+                "responses": {
+                    "200": {
+                        "description": "Dashboard record retrieved successfully"
+                    }
+                }
+            }
+        },
         "/api/desa/{id}": {
             "get": {
                 "tags": [
@@ -709,6 +723,10 @@
                                     "status": {
                                         "type": "boolean",
                                         "example": ""
+                                    },
+                                    "jenis_program": {
+                                        "type": "integer",
+                                        "example": ""
                                     }
                                 },
                                 "type": "object"
@@ -890,6 +908,10 @@
                                     },
                                     "status": {
                                         "type": "boolean",
+                                        "example": ""
+                                    },
+                                    "jenis_program": {
+                                        "type": "integer",
                                         "example": ""
                                     }
                                 },

@@ -176,6 +176,11 @@ class ProgramDesaController extends Controller
      *                     type="boolean",
      *                     example=""
      *                 ),
+     *                 @OA\Property(
+     *                     property="jenis_program",
+     *                     type="integer",
+     *                     example=""
+     *                 ),
      *             ),
      *          ),
      *      ),
@@ -210,7 +215,8 @@ class ProgramDesaController extends Controller
             'tanggal_selesai' => 'required|string',
             'foto' => 'string|nullable',
             'anggaran' => 'nullable',
-            'status' => 'boolean|nullable'
+            'status' => 'boolean|nullable',
+            'jenis_program' => 'nullable'
         ]);
 
         if (empty($validatedData['desa_id'])) {
@@ -282,6 +288,11 @@ class ProgramDesaController extends Controller
      *                     type="boolean",
      *                     example=""
      *                 ),
+     *                 @OA\Property(
+     *                     property="jenis_program",
+     *                     type="integer",
+     *                     example=""
+     *                 ),
      *             ),
      *          ),
      *      ),
@@ -316,6 +327,7 @@ class ProgramDesaController extends Controller
         $program_desa->foto = $request->input('foto');
         $program_desa->anggaran = $request->input('anggaran');
         $program_desa->status = $request->input('status');
+        $program_desa->jenis_program = $request->input('jenis_program');
 
         if (!empty($request->input('desa_id'))) {
             $program_desa->desa_id = $request->input('desa_id');
