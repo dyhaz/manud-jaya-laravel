@@ -81,7 +81,7 @@ class UserController extends Controller
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);
-
+        $validatedData['photo'] = 'https://www.gravatar.com/avatar/' . md5(strtolower($validatedData['email']));
         $user = User::create($validatedData);
 
         return response()->json(['data' => $user], 201);
