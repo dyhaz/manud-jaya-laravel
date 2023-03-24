@@ -107,7 +107,7 @@ class DashboardController extends Controller
         // Create an array with the total anggaran for each month, with zero as default value
         $anggaranArray = [];
         for ($i = 1; $i <= 12; $i++) {
-            $anggaranArray[$i] = $anggaranByMonth[$i] ?? 0;
+            $anggaranArray[] = $anggaranByMonth[$i] ?? 0;
         }
 
         return response()->json([
