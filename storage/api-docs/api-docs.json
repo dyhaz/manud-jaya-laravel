@@ -706,6 +706,206 @@
                 }
             }
         },
+        "/api/perizinan": {
+            "get": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Get all perizinan requests",
+                "operationId": "f94238cdadc8b0b97d86061d43a219ec",
+                "responses": {
+                    "200": {
+                        "description": "Returns all perizinan requests",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "DataResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Create a new perizinan request",
+                "operationId": "b40b84d7a2670210326746ee31eb0728",
+                "requestBody": {
+                    "description": "Request body for creating a new perizinan request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "CreateRequestPerizinan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Perizinan request created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "ValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/perizinan/{id}": {
+            "get": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Get a perizinan request by ID",
+                "operationId": "a258769a47434b5ee95bdca6e2df9a4c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the perizinan request to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns the specified perizinan request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Perizinan request not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "NotFound"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Update a perizinan request by ID",
+                "operationId": "2e0794dd1e031695aa5fedd5c266db86",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the perizinan request to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body for updating a perizinan request",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "UpdateRequestPerizinan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Perizinan request updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Perizinan request not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "NotFound"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "ValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Delete a perizinan request by ID",
+                "operationId": "76a99163102b8d28e289469a2dcdbdb8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the perizinan request to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Perizinan request deleted successfully"
+                    },
+                    "404": {
+                        "description": "Perizinan request not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "NotFound"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/program-desa": {
             "get": {
                 "tags": [

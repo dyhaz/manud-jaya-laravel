@@ -1,0 +1,110 @@
+components:
+  schemas:
+    UpdateRequestPerizinan:
+      description: Data yang diperlukan untuk memperbarui permintaan perizinan
+      type: object
+      properties:
+        nama:
+          type: string
+          description: Nama lengkap pemohon perizinan
+        alamat:
+          type: string
+          description: Alamat lengkap pemohon perizinan
+        jenis_perizinan:
+          type: string
+          description: Jenis perizinan yang diminta
+        jenis_id:
+          type: integer
+          description: ID dari perizinan yang diajukan
+        tanggal_mulai:
+          type: string
+          format: date
+          description: Tanggal mulai berlakunya perizinan
+        tanggal_selesai:
+          type: string
+          format: date
+          description: Tanggal berakhirnya perizinan
+      example:
+        nama: "John Doe"
+        alamat: "Jl. Kenanga No. 123"
+        jenis_perizinan: "Izin Usaha"
+        tanggal_mulai: "2023-04-01"
+        tanggal_selesai: "2023-06-30"
+    CreateRequestPerizinan:
+      type: object
+      properties:
+        nama:
+          type: string
+          description: Nama lengkap pemohon perizinan
+        alamat:
+          type: string
+          description: Alamat lengkap pemohon perizinan
+        jenis_perizinan:
+          type: string
+          description: Jenis perizinan yang diajukan
+        jenis_id:
+          type: integer
+          description: ID dari perizinan yang diajukan
+        warga_id:
+          type: integer
+          description: ID dari warga yang mengajukan perizinan
+        required:
+          - nama
+          - alamat
+          - warga_id
+        example:
+          nama: "John Doe"
+          alamat: "Jl. Sudirman No. 123"
+          jenis_perizinan: "Surat Izin Keramaian"
+          warga_id: 1
+    NotFound:
+      description: Data yang diminta tidak ditemukan
+      type: object
+      properties:
+        message:
+          type: string
+          description: Pesan error yang menunjukkan data tidak ditemukan
+      example:
+        message: "Data dengan ID 123 tidak ditemukan"
+    ValidationError:
+      description: Error validasi data request
+      type: object
+      properties:
+        message:
+          type: string
+          description: Pesan error yang menunjukkan data request tidak valid
+        errors:
+          type: array
+          description: Daftar error validasi pada setiap properti request
+          items:
+            type: string
+      example:
+        message: "Data request tidak valid"
+        errors:
+          - "Nama harus diisi"
+          - "Alamat harus diisi"
+          - "Jenis perizinan harus diisi"
+          - "Warga ID harus diisi"
+      DataResponse:
+        type: object
+        properties:
+          status:
+            type: string
+            description: Keterangan status response
+            example: "success"
+          message:
+            type: string
+            description: Pesan terkait response
+            example: "Permintaan perizinan berhasil diajukan"
+          data:
+            type: object
+            description: Data hasil permintaan perizinan yang diajukan
+        example:
+          status: "success"
+          message: "Permintaan perizinan berhasil diajukan"
+          data:
+            nama: "John Doe"
+            alamat: "Jl. Kenanga No. 123"
+            jenis_perizinan: "Izin Usaha"
+            tanggal_mulai: "2023-04-01"
+            tanggal_selesai: "2023-06-30"

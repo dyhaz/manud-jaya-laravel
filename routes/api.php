@@ -53,3 +53,9 @@ Route::post('/send-email-verification-link', [\App\Http\Controllers\AuthControll
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 Route::get('/dashboard/anggaran', [\App\Http\Controllers\DashboardController::class, 'monthlyAnggaran']);
 Route::get('/dashboard/anggaran/{year}', [\App\Http\Controllers\DashboardController::class, 'anggaranByMonth']);
+
+Route::get('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'show']);
+Route::get('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'index']);
+Route::post('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'store']);
+Route::put('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'update']);
+Route::delete('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy']);
