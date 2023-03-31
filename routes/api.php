@@ -39,6 +39,12 @@ Route::delete('/program-desa/{id}', [\App\Http\Controllers\ProgramDesaController
 Route::get('/jenis-program', [\App\Http\Controllers\JenisProgramController::class, 'index']);
 Route::post('/jenis-program', [\App\Http\Controllers\JenisProgramController::class, 'store']);
 
+Route::get('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'show']);
+Route::get('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'index']);
+Route::post('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'store']);
+Route::put('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'update']);
+Route::delete('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy']);
+
 Route::get('/users/{id}', [\App\Http\Controllers\UserController::class, 'show']);
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
 Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
@@ -54,8 +60,3 @@ Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'ind
 Route::get('/dashboard/anggaran', [\App\Http\Controllers\DashboardController::class, 'monthlyAnggaran']);
 Route::get('/dashboard/anggaran/{year}', [\App\Http\Controllers\DashboardController::class, 'anggaranByMonth']);
 
-Route::get('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'show']);
-Route::get('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'index']);
-Route::post('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'store']);
-Route::put('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'update']);
-Route::delete('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy']);

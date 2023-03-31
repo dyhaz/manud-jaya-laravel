@@ -712,14 +712,14 @@
                     "Perizinan"
                 ],
                 "summary": "Get all perizinan requests",
-                "operationId": "f94238cdadc8b0b97d86061d43a219ec",
+                "operationId": "getPerizinan",
                 "responses": {
                     "200": {
                         "description": "Returns all perizinan requests",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "DataResponse"
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
@@ -731,14 +731,14 @@
                     "Perizinan"
                 ],
                 "summary": "Create a new perizinan request",
-                "operationId": "b40b84d7a2670210326746ee31eb0728",
+                "operationId": "createPerizinan",
                 "requestBody": {
                     "description": "Request body for creating a new perizinan request",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "CreateRequestPerizinan"
+                                "$ref": "#/components/schemas/CreateRequestPerizinan"
                             }
                         }
                     }
@@ -749,7 +749,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "DataResponse"
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
@@ -759,7 +759,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "ValidationError"
+                                    "$ref": "#/components/schemas/ValidationError"
                                 }
                             }
                         }
@@ -773,7 +773,7 @@
                     "Perizinan"
                 ],
                 "summary": "Get a perizinan request by ID",
-                "operationId": "a258769a47434b5ee95bdca6e2df9a4c",
+                "operationId": "getPerizinanById",
                 "parameters": [
                     {
                         "name": "id",
@@ -792,7 +792,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "DataResponse"
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
@@ -802,7 +802,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "NotFound"
+                                    "$ref": "#/components/schemas/NotFound"
                                 }
                             }
                         }
@@ -814,7 +814,7 @@
                     "Perizinan"
                 ],
                 "summary": "Update a perizinan request by ID",
-                "operationId": "2e0794dd1e031695aa5fedd5c266db86",
+                "operationId": "updatePerizinan",
                 "parameters": [
                     {
                         "name": "id",
@@ -833,7 +833,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "UpdateRequestPerizinan"
+                                "$ref": "#/components/schemas/UpdateRequestPerizinan"
                             }
                         }
                     }
@@ -844,7 +844,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "DataResponse"
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
@@ -854,7 +854,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "NotFound"
+                                    "$ref": "#/components/schemas/NotFound"
                                 }
                             }
                         }
@@ -864,7 +864,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "ValidationError"
+                                    "$ref": "#/components/schemas/ValidationError"
                                 }
                             }
                         }
@@ -876,7 +876,7 @@
                     "Perizinan"
                 ],
                 "summary": "Delete a perizinan request by ID",
-                "operationId": "76a99163102b8d28e289469a2dcdbdb8",
+                "operationId": "deletePerizinan",
                 "parameters": [
                     {
                         "name": "id",
@@ -898,7 +898,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "NotFound"
+                                    "$ref": "#/components/schemas/NotFound"
                                 }
                             }
                         }
@@ -1433,6 +1433,220 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "DataResponse": {
+                "description": "Data response dari permintaan perizinan",
+                "properties": {
+                    "status": {
+                        "description": "Keterangan status response",
+                        "type": "string",
+                        "example": "success"
+                    },
+                    "message": {
+                        "description": "Pesan terkait response",
+                        "type": "string",
+                        "example": "Permintaan perizinan berhasil diajukan"
+                    },
+                    "data": {
+                        "description": "Data hasil permintaan perizinan yang diajukan",
+                        "properties": {
+                            "nama": {
+                                "description": "Nama lengkap pemohon perizinan",
+                                "type": "string"
+                            },
+                            "alamat": {
+                                "description": "Alamat lengkap pemohon perizinan",
+                                "type": "string"
+                            },
+                            "jenis_perizinan": {
+                                "description": "Jenis perizinan yang diminta",
+                                "type": "string"
+                            },
+                            "tanggal_mulai": {
+                                "description": "Tanggal mulai berlakunya perizinan",
+                                "type": "string",
+                                "format": "date"
+                            },
+                            "tanggal_selesai": {
+                                "description": "Tanggal berakhirnya perizinan",
+                                "type": "string",
+                                "format": "date"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "status": "success",
+                    "message": "Permintaan perizinan berhasil diajukan",
+                    "data": {
+                        "nama": "John Doe",
+                        "alamat": "Jl. Kenanga No. 123",
+                        "jenis_perizinan": "Izin Usaha",
+                        "tanggal_mulai": "2023-04-01",
+                        "tanggal_selesai": "2023-06-30"
+                    }
+                }
+            },
+            "NotFound": {
+                "description": "Data yang diminta tidak ditemukan",
+                "properties": {
+                    "message": {
+                        "description": "Pesan error yang menunjukkan data tidak ditemukan",
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "message": "Data dengan ID 123 tidak ditemukan"
+                }
+            },
+            "CreateRequestPerizinan": {
+                "title": "Create Request Perizinan",
+                "required": [
+                    "nama",
+                    "alamat",
+                    "warga_id"
+                ],
+                "properties": {
+                    "nama": {
+                        "description": "Nama lengkap pemohon perizinan",
+                        "type": "string"
+                    },
+                    "alamat": {
+                        "description": "Alamat lengkap pemohon perizinan",
+                        "type": "string"
+                    },
+                    "tanggal_request": {
+                        "description": "Tanggal request perizinan",
+                        "type": "string"
+                    },
+                    "keterangan": {
+                        "description": "Keterangan perizinan",
+                        "type": "string"
+                    },
+                    "status_request": {
+                        "description": "Status perizinan",
+                        "type": "string"
+                    },
+                    "jenis_perizinan": {
+                        "description": "Jenis perizinan yang diajukan",
+                        "type": "string"
+                    },
+                    "jenis_id": {
+                        "description": "ID dari perizinan yang diajukan",
+                        "type": "integer"
+                    },
+                    "warga_id": {
+                        "description": "ID dari warga yang mengajukan perizinan",
+                        "type": "integer"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "nama": "John Doe",
+                    "alamat": "Jl. Sudirman No. 123",
+                    "jenis_perizinan": "Surat Izin Keramaian",
+                    "tanggal_request": "2022-01-01",
+                    "status_request": "",
+                    "keterangan": "Pembuatan surat izin keramaian",
+                    "warga_id": 1
+                }
+            },
+            "UpdateRequestPerizinan": {
+                "title": "Update Request Perizinan",
+                "description": "Data yang diperlukan untuk memperbarui permintaan perizinan",
+                "required": [
+                    "nama",
+                    "alamat",
+                    "jenis_perizinan",
+                    "jenis_id",
+                    "tanggal_mulai",
+                    "tanggal_selesai"
+                ],
+                "properties": {
+                    "nama": {
+                        "description": "Nama lengkap pemohon perizinan",
+                        "type": "string"
+                    },
+                    "alamat": {
+                        "description": "Alamat lengkap pemohon perizinan",
+                        "type": "string"
+                    },
+                    "jenis_perizinan": {
+                        "description": "Jenis perizinan yang diminta",
+                        "type": "string"
+                    },
+                    "jenis_id": {
+                        "description": "ID dari perizinan yang diajukan",
+                        "type": "integer"
+                    },
+                    "tanggal_request": {
+                        "description": "Tanggal request perizinan",
+                        "type": "string"
+                    },
+                    "keterangan": {
+                        "description": "Keterangan perizinan",
+                        "type": "string"
+                    },
+                    "status_request": {
+                        "description": "Status perizinan",
+                        "type": "string"
+                    },
+                    "tanggal_mulai": {
+                        "description": "Tanggal mulai berlakunya perizinan",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "tanggal_selesai": {
+                        "description": "Tanggal berakhirnya perizinan",
+                        "type": "string",
+                        "format": "date"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "nama": "John Doe",
+                    "alamat": "Jl. Kenanga No. 123",
+                    "jenis_perizinan": "Izin Usaha",
+                    "tanggal_request": "2022-01-01",
+                    "status_request": "",
+                    "keterangan": "Pembuatan surat izin usaha",
+                    "jenis_id": 123,
+                    "tanggal_mulai": "2023-04-01",
+                    "tanggal_selesai": "2023-06-30"
+                }
+            },
+            "ValidationError": {
+                "description": "Error validasi data request",
+                "properties": {
+                    "message": {
+                        "description": "Pesan error yang menunjukkan data request tidak valid",
+                        "type": "string"
+                    },
+                    "errors": {
+                        "description": "Daftar error validasi pada setiap properti request",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "message": "Data request tidak valid",
+                    "errors": [
+                        "Nama harus diisi",
+                        "Alamat harus diisi",
+                        "Jenis perizinan harus diisi",
+                        "Warga ID harus diisi"
+                    ]
                 }
             }
         }

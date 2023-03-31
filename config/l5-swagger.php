@@ -39,7 +39,6 @@ return [
                  * Absolute paths to directory containing the swagger annotations are stored.
                 */
                 'annotations' => [
-                    base_path('app/Http/Annotations'),
                     base_path('app'),
                 ],
 
@@ -133,7 +132,7 @@ return [
              *
              * @see \OpenApi\scan
              */
-            'pattern' => null,
+            'pattern' => ['*Controller.php', '*Annotation.php', '*Schema.php'],
 
             /*
              * Absolute path to directories that should be exclude from scanning

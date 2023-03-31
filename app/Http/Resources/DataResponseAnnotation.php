@@ -1,4 +1,6 @@
 <?php
+namespace App\Http\Resources;
+
 /**
  * @OA\Schema(
  *     schema="DataResponse",
@@ -61,3 +63,5 @@
  *     }
  * )
  */
+class DataResponseAnnotation { /* .... */}
+

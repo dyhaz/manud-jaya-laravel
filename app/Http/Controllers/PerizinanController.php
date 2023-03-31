@@ -13,18 +13,19 @@ class PerizinanController extends Controller
      * @OA\Get(
      *     path="/api/perizinan",
      *     summary="Get all perizinan requests",
+     *     operationId="getPerizinan",
      *     tags={"Perizinan"},
      *     @OA\Response(
      *         response=200,
      *         description="Returns all perizinan requests",
-     *         @OA\JsonContent(ref="DataResponse")
+     *         @OA\JsonContent(ref="#/components/schemas/DataResponse")
      *     )
      * )
      */
     public function index()
     {
         $requests = RequestPerizinan::all();
-        return response()->json($requests);
+        return response()->json(['data' => $requests]);
     }
 
     /**
@@ -32,20 +33,21 @@ class PerizinanController extends Controller
      *     path="/api/perizinan",
      *     summary="Create a new perizinan request",
      *     tags={"Perizinan"},
+     *     operationId="createPerizinan",
      *     @OA\RequestBody(
      *         required=true,
      *         description="Request body for creating a new perizinan request",
-     *         @OA\JsonContent(ref="CreateRequestPerizinan")
+     *         @OA\JsonContent(ref="#/components/schemas/CreateRequestPerizinan")
      *     ),
      *     @OA\Response(
      *         response=201,
      *         description="Perizinan request created successfully",
-     *         @OA\JsonContent(ref="DataResponse")
+     *         @OA\JsonContent(ref="#/components/schemas/DataResponse")
      *     ),
      *     @OA\Response(
      *         response=422,
      *         description="Validation error",
-     *         @OA\JsonContent(ref="ValidationError")
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationError")
      *     )
      * )
      */
@@ -78,6 +80,7 @@ class PerizinanController extends Controller
      * @OA\Get(
      *     path="/api/perizinan/{id}",
      *     summary="Get a perizinan request by ID",
+     *     operationId="getPerizinanById",
      *     tags={"Perizinan"},
      *     @OA\Parameter(
      *         name="id",
@@ -92,12 +95,12 @@ class PerizinanController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Returns the specified perizinan request",
-     *         @OA\JsonContent(ref="DataResponse")
+     *         @OA\JsonContent(ref="#/components/schemas/DataResponse")
      *     ),
      *     @OA\Response(
      *         response=404,
      *         description="Perizinan request not found",
-     *         @OA\JsonContent(ref="NotFound")
+     *         @OA\JsonContent(ref="#/components/schemas/NotFound")
      *     )
      * )
      */
@@ -116,6 +119,7 @@ class PerizinanController extends Controller
      * @OA\Put(
      *     path="/api/perizinan/{id}",
      *     summary="Update a perizinan request by ID",
+     *     operationId="updatePerizinan",
      *     tags={"Perizinan"},
      *     @OA\Parameter(
      *         name="id",
@@ -130,22 +134,22 @@ class PerizinanController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         description="Request body for updating a perizinan request",
-     *         @OA\JsonContent(ref="UpdateRequestPerizinan")
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateRequestPerizinan")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Perizinan request updated successfully",
-     *         @OA\JsonContent(ref="DataResponse")
+     *         @OA\JsonContent(ref="#/components/schemas/DataResponse")
      *     ),
      *     @OA\Response(
      *         response=404,
      *         description="Perizinan request not found",
-     *         @OA\JsonContent(ref="NotFound")
+     *         @OA\JsonContent(ref="#/components/schemas/NotFound")
      *     ),
      *     @OA\Response(
      *         response=422,
      *         description="Validation error",
-     *         @OA\JsonContent(ref="ValidationError")
+     *         @OA\JsonContent(ref="#/components/schemas/ValidationError")
      *     )
      * )
      */
@@ -181,6 +185,7 @@ class PerizinanController extends Controller
      * @OA\Delete(
      *     path="/api/perizinan/{id}",
      *     summary="Delete a perizinan request by ID",
+     *     operationId="deletePerizinan",
      *     tags={"Perizinan"},
      *     @OA\Parameter(
      *         name="id",
@@ -199,7 +204,7 @@ class PerizinanController extends Controller
      *     @OA\Response(
      *         response=404,
      *         description="Perizinan request not found",
-     *         @OA\JsonContent(ref="NotFound")
+     *         @OA\JsonContent(ref="#/components/schemas/NotFound")
      *     )
      * )
      */
