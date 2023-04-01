@@ -180,6 +180,7 @@ class PerizinanController extends Controller
         $requestPerizinan->keterangan = $request->input('keterangan', $requestPerizinan->keterangan);
         $requestPerizinan->jenis_id = $request->input('jenis_id', $requestPerizinan->jenis_id);
         $requestPerizinan->warga_id = $request->input('warga_id', $requestPerizinan->warga_id);
+        $requestPerizinan->save();
         return response()->json(['data' => $requestPerizinan]);
     }
 
