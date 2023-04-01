@@ -40,6 +40,7 @@ class WargaController extends Controller
      * @OA\Get(
      *     path="/api/warga/filter",
      *     summary="Get list of all warga",
+     *     tags={"Warga"},
      *     operationId="filterWarga",
      *     @OA\Parameter(
      *         name="nama_warga",

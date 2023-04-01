@@ -1708,6 +1708,74 @@
                 }
             }
         },
+        "/api/warga/filter": {
+            "get": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Get list of all warga",
+                "operationId": "filterWarga",
+                "parameters": [
+                    {
+                        "name": "nama_warga",
+                        "in": "query",
+                        "description": "Filter by nama warga",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "alamat",
+                        "in": "query",
+                        "description": "Filter by alamat",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Filter by Email",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "nik",
+                        "in": "query",
+                        "description": "Filter by NIK",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of all warga",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DataResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
         "/api/warga/{id}": {
             "get": {
                 "tags": [
