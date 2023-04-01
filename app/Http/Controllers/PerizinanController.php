@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Mail\StatusPerizinan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Models\RequestPerizinan;
-use App\Models\JenisPerizinan;
 use App\Models\Warga;
 
 class PerizinanController extends Controller
@@ -74,6 +75,9 @@ class PerizinanController extends Controller
         $requestPerizinan->jenis_id = $request->input('jenis_id');
         $requestPerizinan->warga_id = $request->input('warga_id');
         $requestPerizinan->save();
+
+        $warga = Warga::find($requestPerizinan->warga_id);
+        Mail::to($requestPerizinan->email)->send(new StatusPerizinan($warga));
 
         return response()->json(['data' => $requestPerizinan], 201);
     }
