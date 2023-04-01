@@ -60,7 +60,7 @@ Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'ind
 Route::get('/dashboard/anggaran', [\App\Http\Controllers\DashboardController::class, 'monthlyAnggaran']);
 Route::get('/dashboard/anggaran/{year}', [\App\Http\Controllers\DashboardController::class, 'anggaranByMonth']);
 
-Route::get('/warga/filter', [\App\Http\Controllers\WargaController::class, 'filterWarga']);
+Route::get('/warga2', [\App\Http\Controllers\WargaController::class, 'index2']);
 Route::get('/warga/{id}', [\App\Http\Controllers\WargaController::class, 'show']);
 Route::get('/warga', [\App\Http\Controllers\WargaController::class, 'index']);
 Route::post('/warga', [\App\Http\Controllers\WargaController::class, 'store']);

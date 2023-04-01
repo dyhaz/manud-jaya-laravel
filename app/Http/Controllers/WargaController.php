@@ -38,7 +38,7 @@ class WargaController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/warga/filter",
+     *     path="/api/warga2",
      *     summary="Get list of all warga",
      *     tags={"Warga"},
      *     operationId="filterWarga",
@@ -93,7 +93,7 @@ class WargaController extends Controller
      *     )
      * )
      */
-    public function filterWarga(Request $request)
+    public function index2(Request $request)
     {
         $query = Warga::query();
 
