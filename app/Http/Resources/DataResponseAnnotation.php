@@ -21,34 +21,7 @@ namespace App\Http\Resources;
  *     @OA\Property(
  *         property="data",
  *         type="object",
- *         description="Data hasil permintaan perizinan yang diajukan",
- *         @OA\Property(
- *             property="nama",
- *             type="string",
- *             description="Nama lengkap pemohon perizinan"
- *         ),
- *         @OA\Property(
- *             property="alamat",
- *             type="string",
- *             description="Alamat lengkap pemohon perizinan"
- *         ),
- *         @OA\Property(
- *             property="jenis_perizinan",
- *             type="string",
- *             description="Jenis perizinan yang diminta"
- *         ),
- *         @OA\Property(
- *             property="tanggal_mulai",
- *             type="string",
- *             format="date",
- *             description="Tanggal mulai berlakunya perizinan"
- *         ),
- *         @OA\Property(
- *             property="tanggal_selesai",
- *             type="string",
- *             format="date",
- *             description="Tanggal berakhirnya perizinan"
- *         )
+ *         description="Data API",
  *     ),
  *     example={
  *         "status": "success",

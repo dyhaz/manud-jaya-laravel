@@ -56,9 +56,10 @@ class PerizinanController extends Controller
         $validator = Validator::make($request->all(), [
             'tanggal_request' => 'required|date',
             'status_request' => 'required|string',
+            'lampiran' => 'string|nullable',
             'keterangan' => 'required|string',
-            'jenis_id' => 'required|exists:jenis_perizinan,id',
-            'warga_id' => 'required|exists:warga,id',
+            'jenis_id' => 'required|exists:jenis_perizinan,jenis_id',
+            'warga_id' => 'required|exists:warga,warga_id',
         ]);
 
         if ($validator->fails()) {
@@ -69,6 +70,7 @@ class PerizinanController extends Controller
         $requestPerizinan->tanggal_request = $request->input('tanggal_request');
         $requestPerizinan->status_request = $request->input('status_request');
         $requestPerizinan->keterangan = $request->input('keterangan');
+        $requestPerizinan->lampiran = $request->input('lampiran');
         $requestPerizinan->jenis_id = $request->input('jenis_id');
         $requestPerizinan->warga_id = $request->input('warga_id');
         $requestPerizinan->save();
@@ -159,8 +161,8 @@ class PerizinanController extends Controller
             'tanggal_request' => 'sometimes|date',
             'status_request' => 'sometimes|string',
             'keterangan' => 'sometimes|string',
-            'jenis_id' => 'sometimes|exists:jenis_perizinan,id',
-            'warga_id' => 'sometimes|exists:warga,id',
+            'jenis_id' => 'sometimes|exists:jenis_perizinan,jenis_id',
+            'warga_id' => 'sometimes|exists:warga,warga_id',
         ]);
 
         if ($validator->fails()) {

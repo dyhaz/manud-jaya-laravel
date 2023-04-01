@@ -28,6 +28,11 @@ namespace App\Http\Resources;
  *         description="Keterangan perizinan"
  *     ),
  *     @OA\Property(
+ *         property="lampiran",
+ *         type="string",
+ *         description="Lampiran perizinan"
+ *     ),
+ *     @OA\Property(
  *         property="status_request",
  *         type="string",
  *         description="Status perizinan"

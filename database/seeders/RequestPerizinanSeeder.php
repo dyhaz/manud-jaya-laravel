@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\JenisPerizinan;
+use App\Models\RequestPerizinan;
+use App\Models\Warga;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -38,5 +41,19 @@ class RequestPerizinanSeeder extends Seeder
                 'warga_id' => 3
             ]
         ]);
+
+        $statuses = ['Menunggu Persetujuan', 'Disetujui', 'Ditolak'];
+        $jenisPerizinan = JenisPerizinan::pluck('jenis_id')->toArray();
+        $warga = Warga::pluck('warga_id')->toArray();
+
+        for ($i = 1; $i <= 100; $i++) {
+            $requestPerizinan = new RequestPerizinan;
+            $requestPerizinan->tanggal_request = now()->subDays(rand(1, 30));
+            $requestPerizinan->status_request = $statuses[array_rand($statuses)];
+            $requestPerizinan->keterangan = 'Perizinan ' . $i;
+            $requestPerizinan->jenis_id = $jenisPerizinan[array_rand($jenisPerizinan)];
+            $requestPerizinan->warga_id = $warga[array_rand($warga)];
+            $requestPerizinan->save();
+        }
     }
 }

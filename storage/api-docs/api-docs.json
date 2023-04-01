@@ -1453,31 +1453,7 @@
                         "example": "Permintaan perizinan berhasil diajukan"
                     },
                     "data": {
-                        "description": "Data hasil permintaan perizinan yang diajukan",
-                        "properties": {
-                            "nama": {
-                                "description": "Nama lengkap pemohon perizinan",
-                                "type": "string"
-                            },
-                            "alamat": {
-                                "description": "Alamat lengkap pemohon perizinan",
-                                "type": "string"
-                            },
-                            "jenis_perizinan": {
-                                "description": "Jenis perizinan yang diminta",
-                                "type": "string"
-                            },
-                            "tanggal_mulai": {
-                                "description": "Tanggal mulai berlakunya perizinan",
-                                "type": "string",
-                                "format": "date"
-                            },
-                            "tanggal_selesai": {
-                                "description": "Tanggal berakhirnya perizinan",
-                                "type": "string",
-                                "format": "date"
-                            }
-                        },
+                        "description": "Data API",
                         "type": "object"
                     }
                 },
@@ -1529,6 +1505,10 @@
                     },
                     "keterangan": {
                         "description": "Keterangan perizinan",
+                        "type": "string"
+                    },
+                    "lampiran": {
+                        "description": "Lampiran perizinan",
                         "type": "string"
                     },
                     "status_request": {
