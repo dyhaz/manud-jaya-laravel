@@ -38,7 +38,7 @@ class WargaController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/warga",
+     *     path="/api/warga/filter",
      *     summary="Get list of all warga",
      *     operationId="filterWarga",
      *     @OA\Parameter(

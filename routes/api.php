@@ -62,6 +62,7 @@ Route::get('/dashboard/anggaran/{year}', [\App\Http\Controllers\DashboardControl
 
 Route::get('/warga/{id}', [\App\Http\Controllers\WargaController::class, 'show']);
 Route::get('/warga', [\App\Http\Controllers\WargaController::class, 'index']);
+Route::get('/warga/filter', [\App\Http\Controllers\WargaController::class, 'filterWarga']);
 Route::post('/warga', [\App\Http\Controllers\WargaController::class, 'store']);
 Route::put('/warga/{id}', [\App\Http\Controllers\WargaController::class, 'update']);
 
