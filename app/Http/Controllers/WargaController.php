@@ -81,10 +81,7 @@ class WargaController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="List of all warga",
-     *         @OA\JsonContent(
-     *             type="array",
-     *             @OA\Items(ref="#/components/schemas/DataResponse")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/DataResponse")
      *     ),
      *     @OA\Response(
      *         response="401",

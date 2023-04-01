@@ -477,10 +477,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/DataResponse"
-                                    }
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
@@ -1759,10 +1756,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/DataResponse"
-                                    }
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
