@@ -1705,7 +1705,7 @@
                 }
             }
         },
-        "/api/warga/filter": {
+        "/api/warga2": {
             "get": {
                 "tags": [
                     "Warga"

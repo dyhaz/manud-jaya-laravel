@@ -77,7 +77,9 @@ class PerizinanController extends Controller
         $requestPerizinan->save();
 
         $warga = Warga::find($requestPerizinan->warga_id);
-        Mail::to($requestPerizinan->email)->send(new StatusPerizinan($warga));
+        if ($warga) {
+            Mail::to($warga->email)->send(new StatusPerizinan($warga));
+        }
 
         return response()->json(['data' => $requestPerizinan], 201);
     }
