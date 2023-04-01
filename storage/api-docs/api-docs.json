@@ -463,6 +463,196 @@
                 ]
             }
         },
+        "/api/jenis-perizinan": {
+            "get": {
+                "tags": [
+                    "Jenis Perizinan"
+                ],
+                "summary": "Get all jenis perizinan",
+                "description": "Returns all jenis perizinan data",
+                "operationId": "getAllJenisPerizinan",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DataResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Jenis Perizinan"
+                ],
+                "summary": "Create new jenis perizinan",
+                "description": "Create a new jenis perizinan data",
+                "operationId": "createJenisPerizinan",
+                "requestBody": {
+                    "description": "Jenis Perizinan data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JenisPerizinanInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Jenis Perizinan created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/jenis-perizinan/{id}": {
+            "get": {
+                "tags": [
+                    "Jenis Perizinan"
+                ],
+                "summary": "Get jenis perizinan by ID",
+                "description": "Returns a single jenis perizinan data",
+                "operationId": "getJenisPerizinan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Jenis Perizinan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Jenis Perizinan not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Jenis Perizinan"
+                ],
+                "summary": "Update jenis perizinan by ID",
+                "description": "Update a single jenis perizinan data",
+                "operationId": "updateJenisPerizinan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Jenis Perizinan ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Jenis Perizinan data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/JenisPerizinanInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Jenis Perizinan updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Jenis Perizinan"
+                ],
+                "summary": "Delete by ID",
+                "operationId": "deleteJenisPerizinan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Jenis Perizinan record deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Jenis Perizinan record not found"
+                    }
+                }
+            }
+        },
         "/api/jenis-program": {
             "get": {
                 "tags": [
@@ -1435,6 +1625,184 @@
                     }
                 }
             }
+        },
+        "/api/warga": {
+            "get": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Get all warga data",
+                "description": "Returns all warga data",
+                "operationId": "getAllWarga",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "an 'unexpected error' occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Store new warga",
+                "description": "Stores new warga data",
+                "operationId": "storeWarga",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Warga"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Warga data stored successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Data validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "an 'unexpected error' occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/warga/{id}": {
+            "get": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Get warga data by id",
+                "description": "Returns warga data based on given id",
+                "operationId": "getWargaById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the warga to get",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Warga not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFound"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "an 'unexpected error' occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Warga"
+                ],
+                "summary": "Update existing warga data",
+                "description": "Updates existing warga data based on given id",
+                "operationId": "updateWarga",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the warga to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Warga"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Warga data updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1469,6 +1837,37 @@
                         "tanggal_selesai": "2023-06-30"
                     }
                 }
+            },
+            "Error": {
+                "description": "Error",
+                "properties": {
+                    "message": {
+                        "description": "Pesan error",
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "example": {
+                    "message": "Oops, something went wrong."
+                }
+            },
+            "JenisPerizinanInput": {
+                "title": "Jenis Perizinan Input",
+                "required": [
+                    "nama_jenis",
+                    "deskripsi"
+                ],
+                "properties": {
+                    "nama_jenis": {
+                        "description": "Nama jenis perizinan",
+                        "type": "string"
+                    },
+                    "deskripsi_perizinan": {
+                        "description": "Deskripsi jenis perizinan",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
             },
             "NotFound": {
                 "description": "Data yang diminta tidak ditemukan",
@@ -1628,6 +2027,39 @@
                         "Warga ID harus diisi"
                     ]
                 }
+            },
+            "Warga": {
+                "properties": {
+                    "warga_id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "nama_warga": {
+                        "type": "string"
+                    },
+                    "alamat": {
+                        "type": "string"
+                    },
+                    "nomor_telepon": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "nik": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
             }
         }
     }

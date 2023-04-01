@@ -17,7 +17,7 @@ class RequestPerizinan extends Model
 
     public function warga()
     {
-        return $this->belongsTo(Warga::class);
+        return $this->belongsTo(Warga::class, 'warga_id');
     }
 
     protected $table = 'request_perizinan';

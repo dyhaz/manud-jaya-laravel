@@ -60,3 +60,12 @@ Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'ind
 Route::get('/dashboard/anggaran', [\App\Http\Controllers\DashboardController::class, 'monthlyAnggaran']);
 Route::get('/dashboard/anggaran/{year}', [\App\Http\Controllers\DashboardController::class, 'anggaranByMonth']);
 
+Route::get('/warga/{id}', [\App\Http\Controllers\WargaController::class, 'show']);
+Route::get('/warga', [\App\Http\Controllers\WargaController::class, 'index']);
+Route::post('/warga', [\App\Http\Controllers\WargaController::class, 'store']);
+Route::put('/warga/{id}', [\App\Http\Controllers\WargaController::class, 'update']);
+
+Route::get('/jenis-perizinan/{id}', [\App\Http\Controllers\JenisPerizinanController::class, 'show']);
+Route::get('/jenis-perizinan', [\App\Http\Controllers\JenisPerizinanController::class, 'index']);
+Route::post('/jenis-perizinan', [\App\Http\Controllers\JenisPerizinanController::class, 'store']);
+Route::put('/jenis-perizinan/{id}', [\App\Http\Controllers\JenisPerizinanController::class, 'update']);

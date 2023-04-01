@@ -24,7 +24,7 @@ class PerizinanController extends Controller
      */
     public function index()
     {
-        $requests = RequestPerizinan::all();
+        $requests = RequestPerizinan::with('warga')->get();
         return response()->json(['data' => $requests]);
     }
 
@@ -108,7 +108,7 @@ class PerizinanController extends Controller
      */
     public function show($id)
     {
-        $request = RequestPerizinan::find($id);
+        $request = RequestPerizinan::with('warga')->find($id);
 
         if (!$request) {
             return response()->json(['error' => 'Perizinan request not found'], 404);
