@@ -38,6 +38,92 @@ class WargaController extends Controller
 
     /**
      * @OA\Get(
+     *     path="/api/warga",
+     *     summary="Get list of all warga",
+     *     operationId="filterWarga",
+     *     @OA\Parameter(
+     *         name="nama_warga",
+     *         in="query",
+     *         description="Filter by nama warga",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="alamat",
+     *         in="query",
+     *         description="Filter by alamat",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="query",
+     *         description="Filter by Email",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="nik",
+     *         in="query",
+     *         description="Filter by NIK",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of all warga",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/DataResponse")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized"
+     *     ),
+     *     @OA\Response(
+     *         response="403",
+     *         description="Forbidden"
+     *     )
+     * )
+     */
+    public function filterWarga(Request $request)
+    {
+        $query = Warga::query();
+
+        if ($request->has('nama_warga')) {
+            $query->where('nama_warga', 'like', '%' . $request->query('nama_warga') . '%');
+        }
+
+        if ($request->has('alamat')) {
+            $query->where('alamat', 'like', '%' . $request->query('alamat') . '%');
+        }
+
+        if ($request->has('nik')) {
+            $query->where('nik', 'like', '%' . $request->query('nik') . '%');
+        }
+
+        if ($request->has('email')) {
+            $query->where('email', 'like', '%' . $request->query('email') . '%');
+        }
+
+        $warga = $query->get();
+
+        return response()->json([
+            'data' => $warga,
+        ]);
+    }
+
+    /**
+     * @OA\Get(
      *      path="/api/warga/{id}",
      *      operationId="getWargaById",
      *      tags={"Warga"},
