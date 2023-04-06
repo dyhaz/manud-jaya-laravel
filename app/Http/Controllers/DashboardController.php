@@ -48,7 +48,7 @@ class DashboardController extends Controller
         foreach ($jenisPerizinan as $jenis) {
             // Bar chart data
             $count = RequestPerizinan::where('jenis_id', $jenis->jenis_id)->count();
-            $requests = RequestPerizinan::with('warga')->where('jenis_id', $jenis->jenis_id)->get();
+            $requests = RequestPerizinan::select('jenis_id','warga_id','tanggal_request','status_request')->where('jenis_id', $jenis->jenis_id)->get();
             $barChartData[] = [
                 'jenisPerizinan' => $jenis->nama_perizinan,
                 'jumlahRequest' => $count,
@@ -63,9 +63,7 @@ class DashboardController extends Controller
             'ongoingPrograms' => $ongoingPrograms,
             'completedPrograms' => $completedPrograms,
             'totalPerizinan' => $totalPerizinan,
-            'perizinan' => [
-                'bar' => $barChartData
-            ]
+            'perizinan' => $barChartData
         ]]);
     }
 
