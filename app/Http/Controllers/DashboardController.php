@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\JenisPerizinan;
 use App\Models\ProgramDesa;
+use App\Models\RequestPerizinan;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -35,11 +37,36 @@ class DashboardController extends Controller
         // Retrieve the number of completed programs
         $completedPrograms = ProgramDesa::where('status', '0')->count();
 
+        // Retrieve the number of requested perizinan
+        $totalPerizinan = RequestPerizinan::all()->count();
+
+        // Fetch all jenis perizinan records
+        $jenisPerizinan = JenisPerizinan::all();
+
+        // Prepare statistics
+        $barChartData = [];
+
+        foreach ($jenisPerizinan as $jenis) {
+            // Bar chart data
+            $count = RequestPerizinan::where('jenis_id', $jenis->jenis_id)->count();
+            $requests = RequestPerizinan::with('warga')->where('jenis_id', $jenis->jenis_id)->get();
+            $barChartData[] = [
+                'jenisPerizinan' => $jenis->nama_perizinan,
+                'jumlahRequest' => $count,
+                'requests' => $requests
+            ];
+        }
+
+        // Return the JSON response
         return response()->json(['data' => [
             'totalPrograms' => $totalPrograms,
             'totalBudget' => $totalBudget,
             'ongoingPrograms' => $ongoingPrograms,
             'completedPrograms' => $completedPrograms,
+            'totalPerizinan' => $totalPerizinan,
+            'perizinan' => [
+                'bar' => $barChartData
+            ]
         ]]);
     }
 
