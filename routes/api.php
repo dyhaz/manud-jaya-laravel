@@ -41,6 +41,7 @@ Route::post('/jenis-program', [\App\Http\Controllers\JenisProgramController::cla
 
 Route::get('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'show']);
 Route::get('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'index']);
+Route::get('/perizinan-by-email', [\App\Http\Controllers\PerizinanController::class, 'perizinanByEmail']);
 Route::post('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'store']);
 Route::put('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'update']);
 Route::delete('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy']);

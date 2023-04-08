@@ -30,6 +30,65 @@ class PerizinanController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/api/perizinan-by-email",
+     *      operationId="getPerizinanByEmail",
+     *      tags={"Perizinan"},
+     *      summary="Get perizinan data filtered by email and status request",
+     *      description="Returns perizinan data based on email and status request",
+     *      @OA\Parameter(
+     *          name="email",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="status",
+     *          in="query",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/DataResponse")
+     *       ),
+     *      @OA\Response(response=400, description="Invalid input"),
+     *      @OA\Response(response=404, description="Warga not found"),
+     * )
+     */
+    public function perizinanByEmail(Request $request)
+    {
+        // Get request parameters
+        $email = $request->input('email');
+        $status = $request->input('status');
+
+        // Validate request parameters
+        if (!$email || !$status) {
+            return response()->json(['message' => 'Email and status are required.'], 400);
+        }
+
+        // Find warga by email
+        $warga = Warga::where('email', $email)->first();
+
+        if (!$warga) {
+            return response()->json(['message' => 'Warga not found.'], 404);
+        }
+
+        // Fetch perizinan data filtered by warga_id and status_request
+        $perizinan = RequestPerizinan::where('warga_id', $warga->id)
+            ->where('status_request', $status)
+            ->get();
+
+        // Return the JSON response
+        return response()->json(['data' => $perizinan]);
+    }
+
+    /**
      * @OA\Post(
      *     path="/api/perizinan",
      *     summary="Create a new perizinan request",

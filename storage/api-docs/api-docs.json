@@ -954,6 +954,52 @@
                 }
             }
         },
+        "/api/perizinan-by-email": {
+            "get": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Get perizinan data filtered by email and status request",
+                "description": "Returns perizinan data based on email and status request",
+                "operationId": "getPerizinanByEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DataResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Warga not found"
+                    }
+                }
+            }
+        },
         "/api/perizinan/{id}": {
             "get": {
                 "tags": [
@@ -1462,6 +1508,10 @@
                                     "phone": {
                                         "type": "string",
                                         "example": "12345678"
+                                    },
+                                    "user_level": {
+                                        "type": "string",
+                                        "example": "warga_desa"
                                     }
                                 },
                                 "type": "object"
@@ -1542,6 +1592,10 @@
                                     "phone": {
                                         "type": "string",
                                         "example": "12345678"
+                                    },
+                                    "user_level": {
+                                        "type": "string",
+                                        "example": "warga_desa"
                                     }
                                 },
                                 "type": "object"
