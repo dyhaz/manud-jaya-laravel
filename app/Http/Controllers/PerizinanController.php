@@ -82,6 +82,7 @@ class PerizinanController extends Controller
         // Fetch perizinan data filtered by warga_id and status_request
         $perizinan = RequestPerizinan::where('warga_id', $warga->warga_id)
             ->where('status_request', $status)
+            ->with('warga')
             ->get();
 
         // Return the JSON response

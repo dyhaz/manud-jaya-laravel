@@ -120,6 +120,34 @@ class UserController extends Controller
         return response()->json(['data' => $user]);
     }
 
+
+    /**
+     * @OA\Get(
+     *   path="/api/user-by-email/{email}",
+     *   operationId="showUserByEmail",
+     *   tags={"User Management"},
+     *   summary="Retrieve a single user by email",
+     *   @OA\Parameter(
+     *     name="email",
+     *     in="path",
+     *     required=true
+     *   ),
+     *   @OA\Response(
+     *     response="200",
+     *     description="User record retrieved successfully"
+     *   ),
+     *   @OA\Response(
+     *     response="404",
+     *     description="User record not found"
+     *   )
+     * )
+     */
+    public function userByEmail($email)
+    {
+        $user = User::where('email', $email)->first();
+        return response()->json(['data' => $user]);
+    }
+
     /**
      * @OA\Put(
      *     path="/api/users/{id}",

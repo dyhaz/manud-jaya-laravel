@@ -1613,6 +1613,30 @@
                 }
             }
         },
+        "/api/user-by-email/{email}": {
+            "get": {
+                "tags": [
+                    "User Management"
+                ],
+                "summary": "Retrieve a single user by email",
+                "operationId": "showUserByEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User record retrieved successfully"
+                    },
+                    "404": {
+                        "description": "User record not found"
+                    }
+                }
+            }
+        },
         "/api/user/password": {
             "post": {
                 "tags": [
