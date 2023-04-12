@@ -175,7 +175,7 @@ class JenisPerizinanController extends Controller
             ], 404);
         }
 
-        $jenisPerizinan->nama_jenis = $request->nama_jenis;
+        $jenisPerizinan->nama_perizinan = $request->nama_jenis;
         $jenisPerizinan->deskripsi_perizinan = $request->deskripsi_perizinan;
         $jenisPerizinan->save();
 
