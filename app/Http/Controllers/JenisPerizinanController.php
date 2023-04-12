@@ -72,7 +72,7 @@ class JenisPerizinanController extends Controller
         ]);
 
         $jenisPerizinan = JenisPerizinan::create([
-            'nama_jenis' => $request->nama_jenis,
+            'nama_perizinan' => $request->nama_jenis,
             'deskripsi_perizinan' => $request->deskripsi_perizinan
         ]);
 
