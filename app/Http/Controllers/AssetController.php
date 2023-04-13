@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -114,5 +115,82 @@ class AssetController extends Controller
         ];
 
         return response()->download($path, $filename, $headers);
+    }
+
+    /**
+     * Upload a new asset file from base64-encoded data.
+     *
+     * @OA\Post(
+     *     path="/api/assets2",
+     *     summary="Upload a new asset file from base64-encoded data.",
+     *     operationId="uploadAssetFileFromBase64",
+     *     tags={"Assets"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Asset file to upload in base64-encoded format",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 required={"file"},
+     *                 @OA\Property(
+     *                     property="file",
+     *                     type="string",
+     *                     format="byte",
+     *                     description="Base64-encoded asset file to upload",
+     *                 ),
+     *             ),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Asset file uploaded successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid request",
+     *     ),
+     * )
+     */
+    public function uploadBase64(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $fileData = $request->input('file');
+        $fileData = str_replace('data:application/octet-stream;base64,', '', $fileData);
+        $fileData = str_replace(' ', '+', $fileData);
+        $fileData = base64_decode($fileData);
+
+        $file = UploadedFile::fake()->create('tempfile', strlen($fileData));
+        $file->put($fileData);
+
+        $validator = Validator::make(['file' => $file], [
+            'file' => 'required|file|max:50000',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $filename = $file->getClientOriginalName();
+
+        // Check if file already exists on disk and append a unique number if necessary
+        $path = storage_path('app/assets/' . $filename);
+        $increment = 0;
+        while (File::exists($path)) {
+            $increment++;
+            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . $increment . '.' . $file->getClientOriginalExtension();
+            $path = storage_path('app/assets/' . $filename);
+        }
+
+        // Save the file to disk and return a success response
+        $file->storeAs('assets', $filename);
+
+        return response()->json(['data' => $filename, 'message' => 'Asset file uploaded successfully'], 201);
     }
 }
