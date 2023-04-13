@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -138,6 +138,11 @@ class AssetController extends Controller
      *                     format="byte",
      *                     description="Base64-encoded asset file to upload",
      *                 ),
+     *                 @OA\Property(
+     *                     property="extension",
+     *                     type="string",
+     *                     description="File extension of the asset file (e.g. 'jpg', 'png', 'pdf')",
+     *                 ),
      *             ),
      *         ),
      *     ),
@@ -166,30 +171,22 @@ class AssetController extends Controller
         $fileData = str_replace(' ', '+', $fileData);
         $fileData = base64_decode($fileData);
 
-        $file = UploadedFile::fake()->create('tempfile', strlen($fileData));
-        $file->put($fileData);
-
-        $validator = Validator::make(['file' => $file], [
-            'file' => 'required|file|max:50000',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+        $maxFileSize = 50 * 1024 * 1024; // 50 MB
+        if (strlen($fileData) > $maxFileSize) {
+            return response()->json(['errors' => ['file' => 'The file size must not exceed 50 MB']], 400);
         }
 
-        $filename = $file->getClientOriginalName();
-
-        // Check if file already exists on disk and append a unique number if necessary
-        $path = storage_path('app/assets/' . $filename);
+        $extension = $request->input('extension');
+        $filename = uniqid('file_', true) . ($extension ? '.' . $extension : '');
+        $path = 'assets/' . $filename;
         $increment = 0;
-        while (File::exists($path)) {
+        while (Storage::exists($path)) {
             $increment++;
-            $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '_' . $increment . '.' . $file->getClientOriginalExtension();
-            $path = storage_path('app/assets/' . $filename);
+            $filename = uniqid('file_', true) . '_' . $increment . ($extension ? '.' . $extension : '');
+            $path = 'assets/' . $filename;
         }
 
-        // Save the file to disk and return a success response
-        $file->storeAs('assets', $filename);
+        Storage::put($path, $fileData);
 
         return response()->json(['data' => $filename, 'message' => 'Asset file uploaded successfully'], 201);
     }

@@ -73,6 +73,49 @@
                 }
             }
         },
+        "/api/assets2": {
+            "post": {
+                "tags": [
+                    "Assets"
+                ],
+                "summary": "Upload a new asset file from base64-encoded data.",
+                "description": "Upload a new asset file from base64-encoded data.",
+                "operationId": "uploadAssetFileFromBase64",
+                "requestBody": {
+                    "description": "Asset file to upload in base64-encoded format",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "description": "Base64-encoded asset file to upload",
+                                        "type": "string",
+                                        "format": "byte"
+                                    },
+                                    "extension": {
+                                        "description": "File extension of the asset file (e.g. 'jpg', 'png', 'pdf')",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Asset file uploaded successfully"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
         "/api/login": {
             "post": {
                 "tags": [
