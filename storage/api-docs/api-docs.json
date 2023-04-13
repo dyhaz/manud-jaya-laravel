@@ -5,6 +5,74 @@
         "version": "0.1"
     },
     "paths": {
+        "/api/assets": {
+            "post": {
+                "tags": [
+                    "Assets"
+                ],
+                "summary": "Upload a new asset file.",
+                "description": "Upload a new asset file.",
+                "operationId": "uploadAssetFile",
+                "requestBody": {
+                    "description": "Asset file to upload",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "description": "Asset file to upload",
+                                        "type": "file",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Asset file uploaded successfully"
+                    },
+                    "400": {
+                        "description": "Invalid request"
+                    }
+                }
+            }
+        },
+        "/api/assets/{filename}": {
+            "get": {
+                "tags": [
+                    "Assets"
+                ],
+                "summary": "Download an asset file.",
+                "description": "Download an asset file.",
+                "operationId": "downloadAssetFile",
+                "parameters": [
+                    {
+                        "name": "filename",
+                        "in": "path",
+                        "description": "The filename of the asset to download",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Asset file downloaded successfully"
+                    },
+                    "404": {
+                        "description": "Asset file not found"
+                    }
+                }
+            }
+        },
         "/api/login": {
             "post": {
                 "tags": [

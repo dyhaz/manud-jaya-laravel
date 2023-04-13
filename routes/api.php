@@ -72,3 +72,6 @@ Route::get('/jenis-perizinan/{id}', [\App\Http\Controllers\JenisPerizinanControl
 Route::get('/jenis-perizinan', [\App\Http\Controllers\JenisPerizinanController::class, 'index']);
 Route::post('/jenis-perizinan', [\App\Http\Controllers\JenisPerizinanController::class, 'store']);
 Route::put('/jenis-perizinan/{id}', [\App\Http\Controllers\JenisPerizinanController::class, 'update']);
+
+Route::post('/assets', [\App\Http\Controllers\AssetController::class, 'upload']);
+Route::get('/assets/{filename}', [\App\Http\Controllers\AssetController::class, 'download']);
