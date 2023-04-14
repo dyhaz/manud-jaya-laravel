@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\StatusPerizinan;
+use App\Models\HistoriPerizinan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -139,6 +141,17 @@ class PerizinanController extends Controller
         $warga = Warga::find($requestPerizinan->warga_id);
         if ($warga) {
             Mail::to($warga->email)->send(new StatusPerizinan($warga));
+
+            $user = User::where('email', $warga->email)->first();
+            if ($user) {
+                $history = new HistoriPerizinan;
+                $history->request_id = $requestPerizinan->request_id;
+                $history->user_id = $user->id;
+                $history->email = $user->email;
+                $history->status_request = $requestPerizinan->status_request;
+                $history->deskripsi = "Perizinan $history->request_id telah diajukan";
+                $history->save();
+            }
         }
 
         return response()->json(['data' => $requestPerizinan], 201);
@@ -247,6 +260,18 @@ class PerizinanController extends Controller
         $requestPerizinan->jenis_id = $request->input('jenis_id', $requestPerizinan->jenis_id);
         $requestPerizinan->warga_id = $request->input('warga_id', $requestPerizinan->warga_id);
         $requestPerizinan->save();
+
+        $user = User::where('email', Warga::find($requestPerizinan->warga_id)->email)->first();
+        if ($user) {
+            $history = new HistoriPerizinan;
+            $history->request_id = $requestPerizinan->request_id;
+            $history->user_id = $user->id;
+            $history->email = $user->email;
+            $history->status_request = $requestPerizinan->status_request;
+            $history->deskripsi = "Perizinan $history->request_id telah $history->status_request pada " . date('Y-m-d H:i:s');
+            $history->save();
+        }
+
         return response()->json(['data' => $requestPerizinan]);
     }
 
