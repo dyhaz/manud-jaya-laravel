@@ -54,8 +54,7 @@ namespace App\Http\Resources;
  *             },
  *             @OA\Property(
  *                 property="photo",
- *                 type="string",
- *                 format="binary"
+ *                 type="string"
  *             ),
  *             @OA\Property(
  *                 property="name",

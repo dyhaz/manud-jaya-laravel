@@ -2295,8 +2295,7 @@
                             ],
                             "properties": {
                                 "photo": {
-                                    "type": "string",
-                                    "format": "binary"
+                                    "type": "string"
                                 },
                                 "name": {
                                     "type": "string"
