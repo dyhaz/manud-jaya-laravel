@@ -8,8 +8,7 @@ namespace App\Http\Resources;
  *     type="object",
  *     @OA\Property(
  *         property="logo_image",
- *         type="array",
- *         @OA\Items(type="string")
+ *         type="string"
  *     ),
  *     @OA\Property(property="title", type="string"),
  *     @OA\Property(property="subtitle", type="string"),
@@ -42,12 +41,7 @@ namespace App\Http\Resources;
  *     @OA\Property(property="visi", type="string"),
  *     @OA\Property(property="misi", type="string"),
  *     @OA\Property(property="about_manud_jaya", type="string"),
- *     @OA\Property(
- *         property="aparat_1_image",
- *         type="string",
- *         format="binary",
- *         description="Base64-encoded image file"
- *     )
+ *     @OA\Property(property="logo_image", type="string")
  * )
  */
 class LandingPageAnnotation { /* .... */ }

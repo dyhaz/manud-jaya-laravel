@@ -813,10 +813,13 @@
                 }
             }
         },
-        "/landing-page": {
+        "/api/landing-page": {
             "get": {
+                "tags": [
+                    "Landing"
+                ],
                 "summary": "Get landing page data",
-                "operationId": "0877f5dce0eae7725d999a4a5edbb619",
+                "operationId": "landingPage",
                 "responses": {
                     "200": {
                         "description": "Returns the landing page data",
@@ -824,6 +827,38 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/LandingPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Landing"
+                ],
+                "summary": "Update landing page data",
+                "operationId": "updateLandingPage",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LandingPageUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Landing page updated successfully"
+                    },
+                    "422": {
+                        "description": "Validation error(s)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationError"
                                 }
                             }
                         }
@@ -2195,10 +2230,7 @@
             "LandingPage": {
                 "properties": {
                     "logo_image": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
+                        "type": "string"
                     },
                     "title": {
                         "type": "string"
@@ -2250,10 +2282,8 @@
                     "about_manud_jaya": {
                         "type": "string"
                     },
-                    "aparat_1_image": {
-                        "description": "Base64-encoded image file",
-                        "type": "string",
-                        "format": "binary"
+                    "logo_image": {
+                        "type": "string"
                     }
                 },
                 "type": "object"

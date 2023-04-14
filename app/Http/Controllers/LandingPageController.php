@@ -11,6 +11,8 @@ class LandingPageController
      * @OA\Get(
      *     path="/api/landing-page",
      *     summary="Get landing page data",
+     *     operationId="landingPage",
+     *     tags={"Landing"},
      *     @OA\Response(
      *         response="200",
      *         description="Returns the landing page data",
@@ -30,9 +32,12 @@ class LandingPageController
         return response()->json(['data' => $landingPage]);
     }
 
-    /* @OA\Post(
+    /**
+    * @OA\Post(
     *     path="/api/landing-page",
     *     summary="Update landing page data",
+    *     operationId="updateLandingPage",
+    *     tags={"Landing"},
     *     @OA\RequestBody(
     *         required=true,
     *         @OA\JsonContent(ref="#/components/schemas/LandingPageUpdateRequest")

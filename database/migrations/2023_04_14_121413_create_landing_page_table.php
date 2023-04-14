@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('landing_page', function (Blueprint $table) {
+        Schema::create('landing_page', function (Blueprint $table) {
             $table->id();
             $table->json('logo_image')->nullable();
             $table->string('title')->nullable();
@@ -32,8 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('landing_page', function (Blueprint $table) {
-            Schema::dropIfExists('landing_pages');
-        });
+        Schema::dropIfExists('landing_page');
     }
 };
