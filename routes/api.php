@@ -77,3 +77,6 @@ Route::put('/jenis-perizinan/{id}', [\App\Http\Controllers\JenisPerizinanControl
 Route::post('/assets', [\App\Http\Controllers\AssetController::class, 'upload']);
 Route::get('/assets/{filename}', [\App\Http\Controllers\AssetController::class, 'download']);
 Route::post('/assets2', [\App\Http\Controllers\AssetController::class, 'uploadBase64']);
+
+Route::get('/landing-page', [\App\Http\Controllers\LandingPageController::class, 'show']);
+Route::post('/landing-page', [\App\Http\Controllers\LandingPageController::class, 'update']);

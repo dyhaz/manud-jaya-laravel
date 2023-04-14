@@ -813,6 +813,24 @@
                 }
             }
         },
+        "/landing-page": {
+            "get": {
+                "summary": "Get landing page data",
+                "operationId": "0877f5dce0eae7725d999a4a5edbb619",
+                "responses": {
+                    "200": {
+                        "description": "Returns the landing page data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LandingPageResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/pelaksana-program": {
             "get": {
                 "tags": [
@@ -1275,10 +1293,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/DataResponse"
-                                    }
+                                    "$ref": "#/components/schemas/DataResponse"
                                 }
                             }
                         }
@@ -2173,6 +2188,72 @@
                     "deskripsi_perizinan": {
                         "description": "Deskripsi jenis perizinan",
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LandingPage": {
+                "properties": {
+                    "logo_image": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                        "type": "string"
+                    },
+                    "visi": {
+                        "type": "string"
+                    },
+                    "misi": {
+                        "type": "string"
+                    },
+                    "about_manud_jaya": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "LandingPageResponse": {
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/LandingPage"
+                    }
+                },
+                "type": "object"
+            },
+            "LandingPageUpdateRequest": {
+                "required": [
+                    "title",
+                    "subtitle",
+                    "visi",
+                    "misi",
+                    "about_manud_jaya"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "subtitle": {
+                        "type": "string"
+                    },
+                    "visi": {
+                        "type": "string"
+                    },
+                    "misi": {
+                        "type": "string"
+                    },
+                    "about_manud_jaya": {
+                        "type": "string"
+                    },
+                    "aparat_1_image": {
+                        "description": "Base64-encoded image file",
+                        "type": "string",
+                        "format": "binary"
                     }
                 },
                 "type": "object"
