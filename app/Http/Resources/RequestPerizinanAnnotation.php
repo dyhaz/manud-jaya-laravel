@@ -59,7 +59,8 @@ namespace App\Http\Resources;
  *         "tanggal_request": "2022-01-01",
  *         "status_request": "",
  *         "keterangan": "Pembuatan surat izin keramaian",
- *         "warga_id": 1
+ *         "warga_id": 1,
+ *         "jenis_id": 1
  *     }
  * )
  */
