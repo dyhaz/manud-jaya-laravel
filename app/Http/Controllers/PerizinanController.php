@@ -334,10 +334,7 @@ class PerizinanController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="OK",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             @OA\Items(ref="#/components/schemas/DataResponse")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/DataResponse")
      *     ),
      *     @OA\Response(
      *         response=404,
