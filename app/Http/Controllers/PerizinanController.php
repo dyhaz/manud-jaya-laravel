@@ -314,4 +314,62 @@ class PerizinanController extends Controller
 
         return response()->noContent();
     }
+
+    /**
+     * @OA\Get(
+     *     path="/api/perizinan/history/{email}",
+     *     summary="Get user's last 5 perizinan history",
+     *     description="Retrieve the last 5 perizinan history for a user based on email address",
+     *     operationId="getHistory",
+     *     tags={"Perizinan"},
+     *     @OA\Parameter(
+     *         name="email",
+     *         in="path",
+     *         description="Email address of the user to retrieve perizinan history for",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="email",
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="OK",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/DataResponse")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="User not found",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="User not found"
+     *             )
+     *         )
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * )
+     */
+    public function getUserPerizinanHistory($email)
+    {
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $perizinanHistory = HistoriPerizinan::where('user_id', $user->id)
+            ->with('perizinan')
+            ->orderByDesc('created_at')
+            ->limit(5)
+            ->get();
+
+        return response()->json(['data' => $perizinanHistory]);
+    }
 }

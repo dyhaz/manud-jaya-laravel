@@ -1250,6 +1250,64 @@
                 }
             }
         },
+        "/api/perizinan/history/{email}": {
+            "get": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Get user's last 5 perizinan history",
+                "description": "Retrieve the last 5 perizinan history for a user based on email address",
+                "operationId": "getHistory",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "Email address of the user to retrieve perizinan history for",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DataResponse"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/program-desa": {
             "get": {
                 "tags": [

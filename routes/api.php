@@ -45,6 +45,7 @@ Route::get('/perizinan-by-email', [\App\Http\Controllers\PerizinanController::cl
 Route::post('/perizinan', [\App\Http\Controllers\PerizinanController::class, 'store']);
 Route::put('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'update']);
 Route::delete('/perizinan/{id}', [\App\Http\Controllers\PerizinanController::class, 'destroy']);
+Route::get('/perizinan/history/{email}', [\App\Http\Controllers\PerizinanController::class, 'getUserPerizinanHistory']);
 
 Route::get('/users/{id}', [\App\Http\Controllers\UserController::class, 'show']);
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
