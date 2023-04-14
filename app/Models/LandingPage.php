@@ -21,7 +21,8 @@ class LandingPage extends Model
         'subtitle',
         'visi',
         'misi',
-        'about_manud_jaya'
+        'about_manud_jaya',
+        'aparat_desa'
     ];
 
     protected $table = 'landing_page';

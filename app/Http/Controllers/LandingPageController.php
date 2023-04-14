@@ -61,14 +61,26 @@ class LandingPageController
             $landingPage = LandingPage::create([]);
         }
 
-        $landingPage->update([
-            'logo_image' => $request->logo_image,
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'visi' => $request->visi,
-            'misi' => $request->misi,
-            'about_manud_jaya' => $request->about_manud_jaya,
-        ]);
+        if ($request->has('aparat_desa')) {
+            $aparatDesa = $request->aparat_desa;
+            $landingPage->aparat_desa = $aparatDesa;
+        }
+
+//        $landingPage->update([
+//            'logo_image' => $request->logo_image,
+//            'title' => $request->title,
+//            'subtitle' => $request->subtitle,
+//            'visi' => $request->visi,
+//            'misi' => $request->misi,
+//            'about_manud_jaya' => $request->about_manud_jaya,
+//        ]);
+        $landingPage->logo_image = $request->logo_image;
+        $landingPage->title = $request->title;
+        $landingPage->subtitle = $request->subtitle;
+        $landingPage->visi = $request->visi;
+        $landingPage->misi = $request->misi;
+        $landingPage->about_manud_jaya = $request->about_manud_jaya;
+        $landingPage->save();
 
         return response()->json(['message' => 'Landing page updated successfully.']);
     }
