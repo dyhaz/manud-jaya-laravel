@@ -326,7 +326,6 @@ class PerizinanController extends Controller
      *         name="email",
      *         in="path",
      *         description="Email address of the user to retrieve perizinan history for",
-     *         required=true,
      *         @OA\Schema(
      *             type="string",
      *             format="email",
@@ -361,15 +360,20 @@ class PerizinanController extends Controller
         $user = User::where('email', $email)->first();
 
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+            $perizinanHistory = HistoriPerizinan::with('perizinan')
+                ->orderByDesc('created_at')
+                ->limit(5)
+                ->get();
+
+            return response()->json(['data' => $perizinanHistory]);
+        } else {
+            $perizinanHistory = HistoriPerizinan::where('user_id', $user->id)
+                ->with('perizinan')
+                ->orderByDesc('created_at')
+                ->limit(5)
+                ->get();
+
+            return response()->json(['data' => $perizinanHistory]);
         }
-
-        $perizinanHistory = HistoriPerizinan::where('user_id', $user->id)
-            ->with('perizinan')
-            ->orderByDesc('created_at')
-            ->limit(5)
-            ->get();
-
-        return response()->json(['data' => $perizinanHistory]);
     }
 }

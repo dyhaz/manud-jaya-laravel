@@ -1263,7 +1263,6 @@
                         "name": "email",
                         "in": "path",
                         "description": "Email address of the user to retrieve perizinan history for",
-                        "required": true,
                         "schema": {
                             "type": "string",
                             "format": "email"
