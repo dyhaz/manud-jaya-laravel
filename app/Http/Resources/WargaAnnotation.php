@@ -10,6 +10,7 @@ namespace App\Http\Resources;
  *     @OA\Property(property="alamat", type="string"),
  *     @OA\Property(property="nomor_telepon", type="string"),
  *     @OA\Property(property="email", type="string", format="email"),
+ *     @OA\Property(property="news_subscribe", type="boolean"),
  *     @OA\Property(property="nik", type="string"),
  *     @OA\Property(property="created_at", type="string", format="date-time"),
  *     @OA\Property(property="updated_at", type="string", format="date-time")

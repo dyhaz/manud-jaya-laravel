@@ -2573,6 +2573,9 @@
                         "type": "string",
                         "format": "email"
                     },
+                    "news_subscribe": {
+                        "type": "boolean"
+                    },
                     "nik": {
                         "type": "string"
                     },

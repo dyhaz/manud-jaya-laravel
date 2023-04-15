@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NewsletterConfirmation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Warga;
 
@@ -266,6 +268,7 @@ class WargaController extends Controller
             'nomor_telepon' => 'required|string',
             'email' => 'required|string|email|unique:warga,email,' . $id . ',warga_id',
             'nik' => 'required|string|unique:warga,nik,' . $id . ',warga_id',
+            'news_subscribe' => 'boolean|nullable'
         ]);
 
         if ($validator->fails()) {
@@ -289,7 +292,12 @@ class WargaController extends Controller
         $warga->nomor_telepon = $request->nomor_telepon;
         $warga->email = $request->email;
         $warga->nik = $request->nik;
+        $warga->news_subscribe = $request->news_subscribe;
         $warga->save();
+
+        if ($request->news_subscribe) {
+            Mail::to($warga->email)->send(new NewsletterConfirmation($warga));
+        }
 
         return response()->json([
             'success' => true,

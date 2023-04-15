@@ -13,7 +13,8 @@ class Warga extends Model
         'nama_warga',
         'nomor_telepon',
         'alamat',
-        'email'
+        'email',
+        'news_subscribe'
     ];
 
     public function requestPerizinan()
