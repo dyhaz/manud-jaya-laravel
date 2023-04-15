@@ -62,6 +62,16 @@ class AuthController extends Controller
             return response()->json(['error' => $validator->errors(), 'message' => 'Validation error.'], 401);
         }
 
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'Unauthorized', 'message' => 'Alamat email yang Anda masukkan tidak terdaftar. Silakan coba lagi.'], 401);
+        }
+
+        if (!$user->active) {
+            return response()->json(['error' => 'Unauthorized', 'message' => 'Akun Anda telah dinonaktifkan. Silakan hubungi administrator.'], 401);
+        }
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
