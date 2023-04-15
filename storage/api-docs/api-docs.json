@@ -2246,6 +2246,28 @@
                     },
                     "about_manud_jaya": {
                         "type": "string"
+                    },
+                    "aparat_desa": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "photo",
+                                "name",
+                                "position"
+                            ],
+                            "properties": {
+                                "photo": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "position": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
                     }
                 },
                 "type": "object"
