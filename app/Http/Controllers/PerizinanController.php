@@ -149,7 +149,7 @@ class PerizinanController extends Controller
                 $history->user_id = $user->id;
                 $history->email = $user->email;
                 $history->status_request = $requestPerizinan->status_request;
-                $history->deskripsi = "Perizinan $history->request_id telah diajukan";
+                $history->deskripsi = "Perizinan #$history->request_id telah diajukan";
                 $history->save();
             }
         }
@@ -268,7 +268,7 @@ class PerizinanController extends Controller
             $history->user_id = $user->id;
             $history->email = $user->email;
             $history->status_request = $requestPerizinan->status_request;
-            $history->deskripsi = "Perizinan $history->request_id telah $history->status_request pada " . date('Y-m-d H:i:s');
+            $history->deskripsi = "Perizinan #$history->request_id telah $history->status_request pada " . date('Y-m-d H:i:s');
             $history->save();
         }
 
