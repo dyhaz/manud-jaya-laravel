@@ -306,4 +306,63 @@ class UserController extends Controller
 
         return response()->json(['success' => 'Password changed successfully'], 200);
     }
+
+    /**
+     * @OA\Put(
+     *     path="/api/users/{id}/disable",
+     *     tags={"User Management"},
+     *     summary="Disable a user",
+     *     operationId="disableUser",
+     *     description="Disable a user by setting the active flag to false.",
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the user to disable.",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="User disabled successfully.",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="message",
+     *                 type="string",
+     *                 example="User disabled."
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="User not found.",
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="error",
+     *                 type="string",
+     *                 example="User not found."
+     *             )
+     *         )
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * )
+     */
+    public function disable($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        $user->active = false;
+        $user->save();
+
+        return response()->json(['message' => 'User disabled.'], 200);
+    }
 }

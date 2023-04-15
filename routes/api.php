@@ -53,6 +53,7 @@ Route::post('/users', [\App\Http\Controllers\UserController::class, 'store']);
 Route::put('/users/{id}', [\App\Http\Controllers\UserController::class, 'update']);
 Route::get('/user-by-email/{email}', [\App\Http\Controllers\UserController::class, 'userByEmail']);
 Route::post('/user/password', [\App\Http\Controllers\UserController::class, 'changePassword']);
+Route::put('/users/{id}/disable', [\App\Http\Controllers\UserController::class, 'disable']);
 
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
