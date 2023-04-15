@@ -357,20 +357,22 @@ class PerizinanController extends Controller
         $user = User::where('email', $email)->first();
 
         if (!$user) {
+            $count = HistoriPerizinan::count();
             $perizinanHistory = HistoriPerizinan::with('perizinan')
                 ->orderByDesc('created_at')
                 ->limit(5)
                 ->get();
 
-            return response()->json(['data' => $perizinanHistory]);
+            return response()->json(['data' => $perizinanHistory, 'total' => $count]);
         } else {
+            $count = HistoriPerizinan::where('user_id', $user->id)->count();
             $perizinanHistory = HistoriPerizinan::where('user_id', $user->id)
                 ->with('perizinan')
                 ->orderByDesc('created_at')
                 ->limit(5)
                 ->get();
 
-            return response()->json(['data' => $perizinanHistory]);
+            return response()->json(['data' => $perizinanHistory, 'total' => $count]);
         }
     }
 }
