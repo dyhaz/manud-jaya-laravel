@@ -1384,14 +1384,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "total_requested": {
-                                            "type": "integer",
-                                            "example": "10"
-                                        },
-                                        "total_approved": {
-                                            "type": "integer",
-                                            "example": "7"
-                                        }
+                                        "data": {}
                                     },
                                     "type": "object"
                                 }
