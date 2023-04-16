@@ -1357,6 +1357,71 @@
                 ]
             }
         },
+        "/api/perizinan/summary/{email}": {
+            "get": {
+                "tags": [
+                    "Perizinan"
+                ],
+                "summary": "Get total requested and approved permits by user email",
+                "description": "Returns total requested and approved permits by user email from request_perizinan table",
+                "operationId": "getPerizinanByUserEmail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User email",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "total_requested": {
+                                            "type": "integer",
+                                            "example": "10"
+                                        },
+                                        "total_approved": {
+                                            "type": "integer",
+                                            "example": "7"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Data not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Data not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/program-desa": {
             "get": {
                 "tags": [

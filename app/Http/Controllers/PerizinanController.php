@@ -375,4 +375,88 @@ class PerizinanController extends Controller
             return response()->json(['data' => $perizinanHistory, 'total' => $count]);
         }
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/perizinan/summary/{email}",
+     *      operationId="getPerizinanByUserEmail",
+     *      tags={"Perizinan"},
+     *      summary="Get total requested and approved permits by user email",
+     *      description="Returns total requested and approved permits by user email from request_perizinan table",
+     *      @OA\Parameter(
+     *          name="email",
+     *          in="path",
+     *          description="User email",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string",
+     *              format="email"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="total_requested",
+     *                  type="integer",
+     *                  example="10"
+     *              ),
+     *              @OA\Property(
+     *                  property="total_approved",
+     *                  type="integer",
+     *                  example="7"
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Data not found",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(
+     *                  property="error",
+     *                  type="string",
+     *                  example="Data not found"
+     *              )
+     *          )
+     *      ),
+     *      security={
+     *          {"bearerAuth": {}}
+     *      }
+     * )
+     */
+    public function getPerizinanStatus(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors(), 'message' => 'Validation error.'], 422);
+        }
+
+        $userEmail = $request->input('email');
+        // Find warga by email
+        $warga = Warga::where('email', $userEmail)->first();
+
+        if (!$warga) {
+            return response()->json(['message' => 'Warga not found.'], 404);
+        }
+
+        $totalDiajukan = RequestPerizinan::where('warga_id', $warga->warga_id)->count();
+
+        $totalDisetujui = RequestPerizinan::where('warga_id', $warga->warga_id)
+            ->where('status', 'Disetujui')
+            ->count();
+
+        return response()->json([
+            'data' => [
+                'total_diajukan' => $totalDiajukan,
+                'total_disetujui' => $totalDisetujui,
+            ],
+            'message' => 'Data perizinan berhasil diambil.',
+        ], 200);
+    }
 }
