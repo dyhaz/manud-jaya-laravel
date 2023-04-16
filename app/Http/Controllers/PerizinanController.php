@@ -399,14 +399,7 @@ class PerizinanController extends Controller
      *          @OA\JsonContent(
      *              type="object",
      *              @OA\Property(
-     *                  property="total_requested",
-     *                  type="integer",
-     *                  example="10"
-     *              ),
-     *              @OA\Property(
-     *                  property="total_approved",
-     *                  type="integer",
-     *                  example="7"
+     *                  property="data"
      *              )
      *          )
      *      ),
