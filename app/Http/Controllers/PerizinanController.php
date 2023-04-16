@@ -420,9 +420,9 @@ class PerizinanController extends Controller
      *      }
      * )
      */
-    public function getPerizinanStatus(Request $request)
+    public function getPerizinanStatus($email)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make([ 'email' => $email ], [
             'email' => 'required|email',
         ]);
 
@@ -430,7 +430,7 @@ class PerizinanController extends Controller
             return response()->json(['error' => $validator->errors(), 'message' => 'Validation error.'], 422);
         }
 
-        $userEmail = $request->input('email');
+        $userEmail = $email;
         // Find warga by email
         $warga = Warga::where('email', $userEmail)->first();
 
