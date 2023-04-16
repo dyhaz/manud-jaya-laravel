@@ -441,7 +441,7 @@ class PerizinanController extends Controller
         $totalDiajukan = RequestPerizinan::where('warga_id', $warga->warga_id)->count();
 
         $totalDisetujui = RequestPerizinan::where('warga_id', $warga->warga_id)
-            ->where('status', 'Disetujui')
+            ->where('status_request', 'Disetujui')
             ->count();
 
         return response()->json([
