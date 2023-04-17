@@ -18,7 +18,7 @@ class CreateFeedMutation extends Mutation
         return [
             "title" => [
                 "name" => "title",
-                "type" => Type::nonNull(Type::string()),
+                "type" => Type::string(),
             ],
             "content" => [
                 "name" => "content",
