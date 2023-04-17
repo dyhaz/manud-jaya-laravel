@@ -191,6 +191,11 @@ class UserController extends Controller
      *                     type="string",
      *                     example="warga_desa"
      *                 ),
+     *                 @OA\Property(
+     *                     property="photo",
+     *                     type="string",
+     *                     example="https://upload.wikimedia.org/wikipedia/commons/9/99/Exampleavatar.png"
+     *                 ),
      *             ),
      *          ),
      *     ),
@@ -213,7 +218,8 @@ class UserController extends Controller
             'email' => 'sometimes|required|string|email|unique:users,email,' . $user->id . '|max:255',
             'password' => 'sometimes|required|string|min:8|max:255',
             'phone' => 'sometimes|string|regex:/^([0-9\s\-\+\(\)]*)$/|max:20|nullable',
-            'user_level' => 'sometimes|string|nullable'
+            'user_level' => 'sometimes|string|nullable',
+            'photo' => 'sometimes|string|nullable'
         ]);
 
         if (isset($validatedData['password'])) {
