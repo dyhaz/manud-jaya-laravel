@@ -76,13 +76,17 @@ return [
         'default' => [
             'query' => [
                 // ExampleQuery::class,
+                'feed' => App\GraphQL\Queries\FeedQuery::class,
+                'feeds' => App\GraphQL\Queries\FeedsQuery::class
             ],
             'mutation' => [
                 // ExampleMutation::class,
+                'createFeed' => App\GraphQL\Mutations\CreateFeedMutation::class
             ],
             // The types only available in this schema
             'types' => [
                 // ExampleType::class,
+                'Feed' => App\GraphQL\Types\FeedType::class
             ],
 
             // Laravel HTTP middleware
@@ -109,6 +113,7 @@ return [
         // ExampleType::class,
         // ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,
+        'Feed' => App\GraphQL\Types\FeedType::class
     ],
 
     // The types will be loaded on demand. Default is to load all types on each request
