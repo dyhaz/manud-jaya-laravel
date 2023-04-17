@@ -19,6 +19,10 @@ class FeedsQuery extends Query
 
     public function resolve($root, $args)
     {
-        return Feed::all();
+        return Feed::select('feeds.*', 'users.name as user_name', 'users.email as email', 'users.photo as photo')
+            ->join('users', 'users.id', '=', 'feeds.user_id')
+            ->where('feeds.active', true)
+            ->orderBy('feeds.created_at', 'desc')
+            ->get();
     }
 }
