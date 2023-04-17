@@ -19,7 +19,7 @@ class FeedType extends GraphQLType
                 "description" => "Id of a particular feed",
             ],
             "title" => [
-                "type" => Type::nonNull(Type::string()),
+                "type" => Type::string(),
                 "description" => "The title of the feed",
             ],
             "content" => [
