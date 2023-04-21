@@ -292,7 +292,9 @@ class WargaController extends Controller
         $warga->nomor_telepon = $request->nomor_telepon;
         $warga->email = $request->email;
         $warga->nik = $request->nik;
-        $warga->news_subscribe = $request->news_subscribe;
+        if ($request->news_subscribe !== null) {
+            $warga->news_subscribe = $request->news_subscribe;
+        }
         $warga->save();
 
         if ($request->news_subscribe) {
